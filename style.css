@@ -1,0 +1,24 @@
+#blockid {
+  color: red;
+}
+
+#blockid.block {
+  color: black;
+}
+
+#blockid.block {
+  color: green;
+}
+
+/* Следующий элемент на одном уровне */
+#blockid + div {
+  color: red;
+}
+
+div[attr='1'] {
+  color: aqua;
+}
+
+div[attr='2'] > font {
+  color: blue;
+}
