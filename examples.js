@@ -21,3 +21,5 @@ let obj = {a: 1}
 Object.freeze(obj)
 obj.b = 2
 console.log(obj)
+
+// --rebase test master 1
