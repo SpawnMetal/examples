@@ -25,6 +25,7 @@ console.log(obj)
 // --rebase test master 1
 // --rebase test master 2
 // --rebase test master 3
+// --rebase test master 4
 // --rebase test develop 1
 // --rebase test develop 2
 // --rebase test develop 3
