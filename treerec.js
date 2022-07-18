@@ -23,7 +23,7 @@ function sumTree(tree) {
     sum += sumTree(tree.left)
   }
   if (tree.right) {
-    sum += sumTree(tree.rught)
+    sum += sumTree(tree.right)
   }
   return sum
 }
