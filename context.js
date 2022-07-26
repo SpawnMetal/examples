@@ -178,23 +178,59 @@
 ////askPassword(user.login.bind(user, true), user.login.bind(user, false)); // ?
 //#endregion Examples
 
-//#region ExamplesNew
-const obj = {
-  par: 1,
-  fun: function () {
-    return this
+// //#region ExamplesNew
+// const obj = {
+//   par: 1,
+//   fun: function () {
+//     return this
+//   },
+//   obj1: {
+//     par: 2,
+//     fun: function () {
+//       return this
+//     },
+//   },
+// }
+
+// const objFun = obj.fun
+
+// console.log(obj.fun())
+// console.log(objFun())
+// console.log(obj.obj1.fun())
+// //#endregion ExamplesNew
+
+//#region ContextNewExample
+function f() {
+  console.log(this)
+}
+
+const f2 = () => console.log(this)
+
+const person = {
+  name: 'Elena',
+  age: 20,
+  f,
+  f2,
+  f3: function () {
+    return () => console.log(this)
   },
-  obj1: {
-    par: 2,
-    fun: function () {
-      return this
-    },
+  f4: () => console.log(this),
+  delayLog: function () {
+    setTimeout(() => {
+      console.log(this.name + ' ' + this.age)
+    }, 500)
   },
 }
 
-const objFun = obj.fun
-
-console.log(obj.fun())
-console.log(objFun())
-console.log(obj.obj1.fun())
-//#endregion ExamplesNew
+const foo = person.f
+foo() // this = root
+f() // this = root
+f.call(person) // this = person
+person.f() // this = person
+person.f3()() // this = person
+f2() // this = {}
+f2.call(person) // this = {}
+person.f2() // this = {}
+person.f4() // this = {}
+person.delayLog()
+//#endregion ContextNewExample
