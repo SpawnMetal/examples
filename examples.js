@@ -10,6 +10,12 @@ console.log(Boolean('0')) // true
 console.log('0' == false) // true т. к. интерпретатор переводит '0' в число
 console.log(false == []) // true
 console.log(false == {}) // false
+if ([]) console.log('true') // true
+else console.log('false')
+if ([0] == true) console.log('true')
+else console.log('false') // false
+if ([1] == true) console.log('true') // true
+else console.log('false') // false
 console.log('' == 0) // true
 console.log('' == []) // true
 console.log('' == {}) // false

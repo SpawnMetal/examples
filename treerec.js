@@ -19,12 +19,8 @@ const tree = {
 
 function sumTree(tree) {
   let sum = tree.value
-  if (tree.left) {
-    sum += sumTree(tree.left)
-  }
-  if (tree.right) {
-    sum += sumTree(tree.right)
-  }
+  if (tree.left) sum += sumTree(tree.left)
+  if (tree.right) sum += sumTree(tree.right)
   return sum
 }
 
