@@ -36,3 +36,9 @@ console.log(obj)
 // --rebase test develop 2
 // --rebase test develop 3
 // --rebase test develop 4
+
+console.log(typeof null) // object
+console.log(typeof function () {}) // function
+console.log(typeof class C {}) // function
+console.log(typeof (2 / 0)) // number. Infinity === 'number'
+console.log(typeof (2 / 'a')) // number. NaN === 'number'
