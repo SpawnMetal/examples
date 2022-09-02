@@ -6,9 +6,9 @@ export const regularMultiPoints = /\.+/g // Одна и более точек, �
 export const regularMultiCommas = /\,+/g // Одна и более запятых, идущих последовательно
 export const regularMultiSpaces = / +/g // Один и более пробелов, идущих последовательно
 export const regularVoidSpace = /\s/g // Символы пустого пространства: пробел, \n, \r, \t, и т. д.
-export const regularRu = /[а-яА-ЯЁё]/gi // Кириллица
-export const regularEng = /[a-zA-Z]/gi // Латиница
-export const regularLetter = /[a-zA-Zа-яА-ЯЁё]/gi // Буквы английские и русские
+export const regularRu = /[а-я]/gi // Кириллица
+export const regularEng = /[a-z]/gi // Латиница
+export const regularLetter = /[a-zа-я]/gi // Буквы английские и русские
 export const regularSymbol = /[/\\~!@#$%^&*+='"`_?]/g // Спец символы
 export const regularBrackets = /[{}\[\]()<>]/g // Скобочные символы
 export const regularPunct = /[;:-]/g // Пунктуация
