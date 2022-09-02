@@ -1,7 +1,7 @@
 export const regularLineFeedAndCarriageReturn = /\n\r/g // \n - символ переноса строки и \r - символ возврата каретки
 export const regularRoundBrackets = /[()]/g // Открывающаяся и закрывающаяся скобки по отдельности
-export const regularNumbersOnly = /\D/g // Только цифры
-export const regularNotNumbers = /[^0-9]/g // Кроме цифр
+export const regularNumbersOnly = /\d/g // Только цифры
+export const regularNotNumbers = /\D/g // Кроме цифр [^0-9]
 export const regularMultiPoints = /\.+/g // Одна и более точек, идущих последовательно
 export const regularMultiCommas = /\,+/g // Одна и более запятых, идущих последовательно
 export const regularMultiSpaces = / +/g // Один и более пробелов, идущих последовательно
