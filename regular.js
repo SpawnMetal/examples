@@ -1,0 +1,24 @@
+export const regularLineFeedAndCarriageReturn = /\n\r/g // \n - символ переноса строки и \r - символ возврата каретки
+export const regularRoundBrackets = /[()]/g // Открывающаяся и закрывающаяся скобки по отдельности
+export const regularNumbersOnly = /\D/g // Только цифры
+export const regularNotNumbers = /[^0-9]/g // Кроме цифр
+export const regularMultiPoints = /\.+/g // Одна и более точек, идущих последовательно
+export const regularMultiCommas = /\,+/g // Одна и более запятых, идущих последовательно
+export const regularMultiSpaces = / +/g // Один и более пробелов, идущих последовательно
+export const regularVoidSpace = /\s/g // Символы пустого пространства: пробел, \n, \r, \t, и т. д.
+export const regularRu = /[а-яА-ЯЁё]/gi // Кириллица
+export const regularEng = /[a-zA-Z]/gi // Латиница
+export const regularLetter = /[a-zA-Zа-яА-ЯЁё]/gi // Буквы английские и русские
+export const regularSymbol = /[/\\~!@#$%^&*+='"`_?]/g // Спец символы
+export const regularBrackets = /[{}\[\]()<>]/g // Скобочные символы
+export const regularPunct = /[;:-]/g // Пунктуация
+export const regularDot = /[\.]/g // Точка
+export const regularComma = /[,]/g // Запятая
+export const regularFIO = /\s.[0-9]+./g // ФИО
+export const regularSharp = /#/g // Решётка
+export const regularSharpAndSpace = /[# ]/g // Решётка и пробелы
+export const regularSingleQuote = /'/g // Одинарная кавычка
+export const regularDoubleQuote = /"/g // Двойная кавычка
+export const regularSN = /[а-яА-ЯёЁ]{1}[0-9]{3}$/ // Первая буква кириллическая, затем 3 цифры
+export const regularSD = /[a-zA-Z]{2}[0-9]{9,10}$/ // Первые две буквы латинские, затем 9-10 цифр
+export const regularsizeMem = /[0-9]{1,2}$/ // 1-2 цифры
