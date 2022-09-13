@@ -269,8 +269,37 @@
 
 // ===================================================== //
 
+// function sum(...args) {
+//   if (args.length === 2) return args[0] + args[1]
+
+//   return function (b) {
+//     return args[0] + b
+//   }
+// }
+
+// console.log(sum(2, 3)) // 5
+// console.log(sum(1)(2)) // 3
+
+// ===================================================== //
+
 // // reverse
 // const array = [1, 2, 4, 6, 3]
 // console.log([...array].map([].pop, array))
+
+// ===================================================== //
+
+// // bind
+// const sum = (x, y) => x + y
+
+// Function.prototype.bind2 = function (context, ...args) {
+//   return (...args2) => {
+//     return this.apply(context, [...args, ...args2])
+//   }
+// }
+
+// const plusTen = sum.bind2(undefined, 10)
+
+// console.log(plusTen(1))
+// console.log(plusTen(10))
 
 // ===================================================== //
