@@ -14,7 +14,7 @@
 //     console.log('var i =', i)
 //   }, 0)
 
-// for (let i = 0; i < 5; i++)
+// for (const i = 0; i < 5; i++)
 //   setTimeout(function () {
 //     console.log('let i =', i)
 //   }, 0)
@@ -35,7 +35,7 @@
 // result[4]()
 
 // result = []
-// for (let i = 0; i < 5; i++)
+// for (const i = 0; i < 5; i++)
 //   result.push(function () {
 //     console.log('result let', i)
 //   })
@@ -114,7 +114,6 @@
 // const temp = arr.unshift(12) // 12 1 2 3
 // arr2.push(14) // 1 2 3 14
 
-// console.log('----- Ex. 1 -----')
 // console.log(temp) // 4 // unshift returns the new length of the array.
 // console.log(arr) // 12 1 2 3 14
 
@@ -131,7 +130,6 @@
 //   return arr3.filter(Boolean)
 // }
 
-// console.log('----- Ex. 2 -----')
 // console.log(filteredArray(arr3)) // [ 'abc', 123, true ]
 
 // ===================================================== //
@@ -141,7 +139,7 @@
 //   say: function () {
 //     setTimeout(
 //       function () {
-//         console.log('----- Ex. 3 -----', this.a)
+//         console.log(this.a)
 //       }.bind(this)
 //     )
 //   },
@@ -160,21 +158,19 @@
 //   // Solution 2
 //   const result = []
 
-//   for (let i of arr) result.indexOf(i) === -1 && result.push(i)
+//   for (const i of arr) result.indexOf(i) === -1 && result.push(i)
 
 //   return result
 // }
 
-// console.log('----- Ex. 4 -----')
 // console.log(uniqueItems(nonUnique)) // [ 1, 2, 45, 3, 5 ]
 
 // // ===================================================== //
 
-// const arr1 = [{company: 'dins'}]
+// const arr1 = [{company: 'CompanyName'}]
 // const arr4 = [...arr1]
 // arr4[0].company = 'dino systems'
 
-// console.log('----- Ex. 5 -----')
 // console.log('arr1', arr1) // [{ company: "dino systems" }]
 
 // ===================================================== //
@@ -197,7 +193,6 @@
 //   console.log('Script end') // 2
 // }
 
-// console.log("----- Ex. 6 -----")
 // something()
 
 // // Script start
@@ -216,34 +211,36 @@
 //   return str === str.split('').reverse().join('')
 // }
 
-// console.log('----- Ex. 7 -----')
-
 // console.log(isPalindrome('racecar'))
 // console.log(isPalindrome('racecar1'))
 
 // ===================================================== //
 
-// // Написать реализаци функции flat
+// // Написать реализацию функции flat
 // const array = [1, [2, 3, 4, [5, 6, [7]]], [8, 9]]
 
-// // Solution 1
+// // // Solution 1
 // const flattened = arr => [].concat(...arr)
 
-// // Solution 2
+// // // Solution 2
 // // const flattened = arr => arr.reduce((acc, val) => acc.concat(val), [])
 
-// function flatten(ary) {
-//   for (let val of ary)
+// function flatten(ary, depth = -1) {
+//   for (const val of ary)
 //     if (Array.isArray(val)) {
+//       depth--
 //       const arr = flattened(ary) // [1, 2, [3], 4, 5]
-//       return flatten(arr) // [1, 2, 3, 4, 5]
+//       if (depth) return flatten(arr, depth) // [1, 2, 3, 4, 5]
+//       else return arr
 //     }
 
 //   return ary
 // }
 
-// console.log('----- Ex. 8 -----')
-// console.log(flatten(array)) // [1, 2, 3, 4, 5]
+// console.log(flatten(array)) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+// console.log(flatten(array, 3)) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+// console.log(flatten(array, 2)) // [1, 2, 3, 4, 5, 6, [ 7 ], 8, 9]
+// console.log(flatten(array, 1)) // [1, 2, 3, 4, [ 5, 6, [ 7 ] ], 8, 9]
 
 // ===================================================== //
 
@@ -262,7 +259,6 @@
 //   return f
 // }
 
-// console.log('----- Ex. 9 -----')
 // console.log(+sum(1)(2)) // 3
 // console.log(+sum(5)(-1)(2)) // 6
 // console.log(+sum(6)(-1)(-2)(-3)) // 0
@@ -301,5 +297,109 @@
 
 // console.log(plusTen(1))
 // console.log(plusTen(10))
+
+// ===================================================== //
+
+// // Добавить метод для работы с массивами который будет возвращать
+// // только те значения которые в массиве являются уникальными (то есть встречаются всего один раз)
+
+// const findUnique = function () {
+//   const result = []
+//   for (const value of this) {
+//     filter = this.filter(par => par === value)
+//     if (filter.length === 1) result.push(value)
+//   }
+
+//   return result
+// }
+
+// Array.prototype.findUnique = findUnique
+// const result = [10, 5, 6, 10, 6, 7, 2].findUnique() // 5 7 2
+// console.log(result)
+
+// ===================================================== //
+
+// interface X {
+//     [key: string]: number
+// }
+
+// const x: X = {
+//  a: 1,
+//  b: 2,
+//  c: 3,
+//  d: 4
+// }
+//
+//
+// function  getProperty<T extends typeof x, K extends keyof typeof x>(obj: T, key: K): T[K] {
+//     return obj[key]
+// }
+//
+// getProperty(x, 'a') // 1
+// getProperty(x, 'm') // error
+
+// ===================================================== //
+
+// const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+
+// const someMethod = async files => {
+//   const results = []
+
+//   for (const el of files) {
+//     await sleep(0) // ждем какой-то async метод (на практике был бы запрос к серверу)
+//     results.push(el * 2)
+//   }
+
+//   return results
+// }
+
+// const start = async () => {
+//   const results = await someMethod([1, 2, 3]) // 2 4 6
+//   console.log(results)
+// }
+
+// start()
+
+// ===================================================== //
+
+// const LiveSearch = () => {
+// const [val, setVal] = useState('');
+// const [response, setResponse] = useState('');
+
+// function search (query){
+//     fetch(`https://jsonplaceholder.typicode.com/todos?query=${query}`)
+//         .then(response => response.json())
+//         .then(json => setResponse(json))
+// }
+
+// const onChange = (e) => {
+//     setVal(e.target.value)
+//     search(val)
+// }
+
+// const onReccomendationClick = useCallback(() => {
+//     console.log(title)
+// },
+// [title],
+// )
+
+// return(
+//     <div>
+//         <input value={val} onChange={onChange} type="text"/>
+//         <Reccomendations onClick={onReccomendationClick} response={response} />
+//     </div>
+// )
+// }
+
+// ===================================================== //
+
+// // Являются ли все символы в строке уникальными
+
+// function isUnique(string) {
+//   return new Set(string).size === string.length
+// }
+
+// console.log(isUnique('123456'))
+// console.log(isUnique('abcad'))
 
 // ===================================================== //
