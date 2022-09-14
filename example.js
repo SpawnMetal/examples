@@ -403,3 +403,43 @@
 // console.log(isUnique('abcad'))
 
 // ===================================================== //
+
+// // Анаграммы
+
+// function allAnagrams(arr) {
+//   const newArr = arr.map(str => str.split('').sort().join(''))
+//   return newArr.every(str => str === newArr[0])
+// }
+
+// console.log(allAnagrams(['abcd', 'bdac', 'cabd']))
+// console.log(allAnagrams(['abcd', 'bdXc', 'cabd']))
+
+// ===================================================== //
+
+// Повернуть матрицу на 90 градусов по часовой стрелке
+
+// const matrix = [
+//   [1, 2, 3], // [7, 4, 1],
+//   [4, 5, 6], // [8, 5, 2],
+//   [7, 8, 9], // [9, 6, 3]
+// ]
+
+// function rotate(source) {
+//   const result = JSON.parse(JSON.stringify(source))
+
+//   for (const iStr in source) {
+//     for (const iEl in source[iStr]) {
+//       result[iEl][source[iStr].length - iStr - 1] = source[iStr][iEl]
+//     }
+//   }
+
+//   return result
+// }
+
+// function print(array) {
+//   array.forEach(element => console.log(element))
+// }
+
+// print(rotate(matrix))
+
+// ===================================================== //
