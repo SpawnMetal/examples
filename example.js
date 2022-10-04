@@ -472,3 +472,46 @@ ReactDOM.render(
 )
 
 // ===================================================== //
+
+function cache(func) {
+  const cached = new Set()
+  let result
+
+  return function (...args) {
+    console.log()
+    console.log(args)
+
+    if (cached.has(String(args))) {
+      console.log('cache')
+      return result
+    } else {
+      console.log('no cache')
+      cached.add(String(args))
+      result = func(...args)
+      return result
+    }
+  }
+}
+
+const add = (a, b) => {
+  return a + b
+}
+const cachedAdd = cache(add)
+let result
+
+result = cachedAdd(1, 2) // no cache
+console.log('result', result)
+result = cachedAdd(1, 2) // cache
+console.log('result', result)
+result = cachedAdd(1, 2) // cache
+console.log('result', result)
+
+result = cachedAdd(3, 4) // no cache
+console.log('result', result)
+result = cachedAdd(3, 4) // cache
+console.log('result', result)
+
+result = cachedAdd(1, 2) // cache
+console.log('result', result)
+
+// ===================================================== //
