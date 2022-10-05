@@ -446,56 +446,56 @@
 
 // Вывести матрицу, обозначить цветом единицы
 
-import {StrictMode} from 'react'
-import ReactDOM from 'react-dom'
+// import {StrictMode} from 'react'
+// import ReactDOM from 'react-dom'
 
-const rootElement = document.getElementById('root')
+// const rootElement = document.getElementById('root')
 
-const matrix = [
-  [1, 0, 1, 0, 1],
-  [0, 0, 0, 1, 1],
-  [1, 0, 0, 1, 0],
-  [1, 0, 1, 1, 1],
-  [0, 0, 1, 1, 0],
-]
+// const matrix = [
+//   [1, 0, 1, 0, 1],
+//   [0, 0, 0, 1, 1],
+//   [1, 0, 0, 1, 0],
+//   [1, 0, 1, 1, 1],
+//   [0, 0, 1, 1, 0],
+// ]
 
-const showMatrix = arr => {
-  if (Array.isArray(arr)) return <div style={{display: 'flex', flexDirection: 'column'}}>{arr.map(value => showMatrix(value))}</div>
-  else return <div style={{display: 'flex', flexDirection: 'row', color: arr ? '#ff0000' : '#000'}}>{arr}</div>
-}
+// const showMatrix = arr => {
+//   if (Array.isArray(arr)) return <div style={{display: 'flex', flexDirection: 'column'}}>{arr.map(value => showMatrix(value))}</div>
+//   else return <div style={{display: 'flex', flexDirection: 'row', color: arr ? '#ff0000' : '#000'}}>{arr}</div>
+// }
 
-ReactDOM.render(
-  <StrictMode>
-    <div style={{display: 'flex'}}>{matrix.map(value => showMatrix(value))}</div>
-  </StrictMode>,
-  rootElement
-)
+// ReactDOM.render(
+//   <StrictMode>
+//     <div style={{display: 'flex'}}>{matrix.map(value => showMatrix(value))}</div>
+//   </StrictMode>,
+//   rootElement
+// )
 
 // ===================================================== //
 
+// Кэш функции с результатом
+
 function cache(func) {
-  const cached = new Set()
-  let result
+  const cached = new Map()
 
   return function (...args) {
+    const key = String(args)
     console.log()
     console.log(args)
 
-    if (cached.has(String(args))) {
+    if (cached.has(key)) {
       console.log('cache')
-      return result
+      return cached.get(key)
     } else {
       console.log('no cache')
-      cached.add(String(args))
       result = func(...args)
+      cached.set(String(args), result)
       return result
     }
   }
 }
 
-const add = (a, b) => {
-  return a + b
-}
+const add = (a, b) => a + b
 const cachedAdd = cache(add)
 let result
 
