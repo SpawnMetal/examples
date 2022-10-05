@@ -488,8 +488,8 @@ function cache(func) {
       return cached.get(key)
     } else {
       console.log('no cache')
-      result = func(...args)
-      cached.set(String(args), result)
+      const result = func(...args)
+      cached.set(key, result)
       return result
     }
   }
