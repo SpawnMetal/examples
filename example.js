@@ -9,23 +9,6 @@
 // cls(1) // 11
 // cls(10) // 20
 
-// for (var i = 0; i < 5; i++)
-//   setTimeout(function () {
-//     console.log('var i =', i)
-//   }, 0)
-
-// for (const i = 0; i < 5; i++)
-//   setTimeout(function () {
-//     console.log('let i =', i)
-//   }, 0)
-
-// for (var i = 0; i < 5; i++)
-//   (function (j) {
-//     setTimeout(function () {
-//       console.log('var iife i =', j)
-//     }, 0)
-//   })(i)
-
 // let result = []
 // for (var i = 0; i < 5; i++)
 //   result.push(function () {
@@ -52,6 +35,48 @@
 //   })()
 // result[2]()
 // result[4]()
+
+// ===================================================== //
+// setTimeout
+
+// i === 5
+// for (var i = 0; i < 5; i++)
+//   setTimeout(function () {
+//     console.log('var i =', i)
+//   }, 0)
+
+// Способ 1 const
+// for (const i = 0; i < 5; i++)
+//   setTimeout(function () {
+//     console.log('const i =', i)
+//   }, 0)
+
+// Способ 2 IIFE
+// for (var i = 0; i < 5; i++)
+//   (function (i) {
+//     setTimeout(function () {
+//       console.log('var iife i =', i)
+//     }, 0)
+//   })(i)
+
+// Способ 3 callback
+// for (var i = 0; i < 5; i++)
+//   (function (i) {
+//     const callback = () => {
+//       console.log('var iife i =', i)
+//     }
+
+//     setTimeout(callback, 0)
+//   })(i)
+
+// Способ 4 bind
+// for (var i = 0; i < 5; i++)
+//   setTimeout(
+//     function (i) {
+//       console.log('var i =', i)
+//     }.bind(undefined, i),
+//     0
+//   )
 
 // ===================================================== //
 // // Прототипы
@@ -473,7 +498,7 @@
 
 // ===================================================== //
 
-// Кэш функции с результатом
+// // Кэш функции с результатом
 
 function cache(func) {
   const cached = new Map()
