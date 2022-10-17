@@ -18,7 +18,7 @@
 // result[4]()
 
 // result = []
-// for (const i = 0; i < 5; i++)
+// for (let i = 0; i < 5; i++)
 //   result.push(function () {
 //     console.log('result let', i)
 //   })
@@ -46,9 +46,9 @@
 //   }, 0)
 
 // Способ 1 const
-// for (const i = 0; i < 5; i++)
+// for (let i = 0; i < 5; i++)
 //   setTimeout(function () {
-//     console.log('const i =', i)
+//     console.log('let i =', i)
 //   }, 0)
 
 // Способ 2 IIFE
@@ -500,43 +500,67 @@
 
 // // Кэш функции с результатом
 
-function cache(func) {
-  const cached = new Map()
+// function cache(func) {
+//   const cached = new Map()
 
-  return function (...args) {
-    const key = String(args)
-    console.log()
-    console.log(args)
+//   return function (...args) {
+//     const key = String(args)
+//     console.log()
+//     console.log(args)
 
-    if (cached.has(key)) {
-      console.log('cache')
-      return cached.get(key)
-    } else {
-      console.log('no cache')
-      const result = func(...args)
-      cached.set(key, result)
-      return result
-    }
-  }
-}
+//     if (cached.has(key)) {
+//       console.log('cache')
+//       return cached.get(key)
+//     } else {
+//       console.log('no cache')
+//       const result = func(...args)
+//       cached.set(key, result)
+//       return result
+//     }
+//   }
+// }
 
-const add = (a, b) => a + b
-const cachedAdd = cache(add)
-let result
+// const add = (a, b) => a + b
+// const cachedAdd = cache(add)
+// let result
 
-result = cachedAdd(1, 2) // no cache
-console.log('result', result)
-result = cachedAdd(1, 2) // cache
-console.log('result', result)
-result = cachedAdd(1, 2) // cache
-console.log('result', result)
+// result = cachedAdd(1, 2) // no cache
+// console.log('result', result)
+// result = cachedAdd(1, 2) // cache
+// console.log('result', result)
+// result = cachedAdd(1, 2) // cache
+// console.log('result', result)
 
-result = cachedAdd(3, 4) // no cache
-console.log('result', result)
-result = cachedAdd(3, 4) // cache
-console.log('result', result)
+// result = cachedAdd(3, 4) // no cache
+// console.log('result', result)
+// result = cachedAdd(3, 4) // cache
+// console.log('result', result)
 
-result = cachedAdd(1, 2) // cache
-console.log('result', result)
+// result = cachedAdd(1, 2) // cache
+// console.log('result', result)
 
 // ===================================================== //
+
+// // Учитывая массив, поверните массив вправо k пошагово, где k неотрицательно.
+
+// const nums = [1, 2, 3, 4, 5, 6, 7]
+// const k = 3
+
+// // Solution 1
+// for (let i = 0; i < k; i++) {
+//   const last = nums.pop()
+//   nums.unshift(last)
+// }
+// console.log(nums) // [5, 6, 7, 1, 2, 3, 4]
+
+// // Solution 2
+// nums.unshift(...nums.splice(-k, k))
+// console.log(nums) // [5, 6, 7, 1, 2, 3, 4]
+
+// ===================================================== //
+
+// Для заданного целочисленного массива nums возвращайте значение, true если какое-либо значение встречается в массиве не менее двух раз, и возвращайте значение, false если все элементы различны.
+
+const nums = [1, 2, 3, 1]
+
+console.log(String(nums) !== String([...new Set(nums)]))
