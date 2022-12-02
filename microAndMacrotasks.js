@@ -204,20 +204,39 @@
 
 // При ".catch" аналогично:
 
-Promise.resolve()
-  .then(() => console.log(1)) // "Первый"
-  .then(() => {
-    console.log(2)
-    throw new Error()
-  }) // "Третий"
-  .catch(() => console.log(3)) // "Пятый"
-  .then(() => console.log(4)) // "Седьмой"
+// Promise.resolve()
+//   .then(() => console.log(1)) // "Первый"
+//   .then(() => {
+//     console.log(2)
+//     throw new Error()
+//   }) // "Третий"
+//   .catch(() => console.log(3)) // "Пятый"
+//   .then(() => console.log(4)) // "Седьмой"
 
-Promise.resolve()
-  .then(() => console.log(11)) // "Второй"
-  .then(() => {
-    console.log(12)
-    throw new Error()
-  }) // "Четвертый"
-  .catch(() => console.log(13)) // "Шестой"
-  .then(() => console.log(14)) // "Восьмой"
+// Promise.resolve()
+//   .then(() => console.log(11)) // "Второй"
+//   .then(() => {
+//     console.log(12)
+//     throw new Error()
+//   }) // "Четвертый"
+//   .catch(() => console.log(13)) // "Шестой"
+//   .then(() => console.log(14)) // "Восьмой"
+
+////////////////////////////////////////////////
+
+async function a1() {
+  return 1
+}
+async function a2() {
+  return 2
+}
+async function a3() {
+  return 3
+}
+
+async function res() {
+  const result = await Promise.all([a1(), a2(), a3()])
+  console.log(result)
+}
+
+res()
