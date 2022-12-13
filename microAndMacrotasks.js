@@ -235,8 +235,17 @@ async function a3() {
 }
 
 async function res() {
-  const result = await Promise.all([a1(), a2(), a3()])
+  let result
+  result = await Promise.all([a1(), a2(), a3()])
+  console.log(result) // [ 1, 2, 3 ]
+
+  result = await Promise.allSettled([a1(), a2(), a3()])
   console.log(result)
+  // [
+  //   { status: 'fulfilled', value: 1 },
+  //   { status: 'fulfilled', value: 2 },
+  //   { status: 'fulfilled', value: 3 }
+  // ]
 }
 
 res()
