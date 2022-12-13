@@ -37,7 +37,7 @@
 // result[4]()
 
 // ===================================================== //
-// setTimeout
+// // setTimeout
 
 // i === 5
 // for (var i = 0; i < 5; i++)
@@ -45,7 +45,7 @@
 //     console.log('var i =', i)
 //   }, 0)
 
-// Способ 1 const
+// Способ 1 let
 // for (let i = 0; i < 5; i++)
 //   setTimeout(function () {
 //     console.log('let i =', i)
@@ -59,17 +59,7 @@
 //     }, 0)
 //   })(i)
 
-// Способ 3 callback
-// for (var i = 0; i < 5; i++)
-//   (function (i) {
-//     const callback = () => {
-//       console.log('var iife i =', i)
-//     }
-
-//     setTimeout(callback, 0)
-//   })(i)
-
-// Способ 4 bind
+// // Способ 3 bind
 // for (var i = 0; i < 5; i++)
 //   setTimeout(
 //     function (i) {
@@ -80,6 +70,7 @@
 
 // ===================================================== //
 // // Прототипы
+
 // function FnNew(color) {
 //   this.color = color
 //   ;(() => console.log('Arrow', this.color))()
@@ -132,6 +123,8 @@
 // console.log(myYear.year)
 
 // ===================================================== //
+// // unshift & push
+
 // const arr = [1, 2, 3]
 
 // const arr2 = arr // arr
@@ -143,14 +136,16 @@
 // console.log(arr) // 12 1 2 3 14
 
 // ===================================================== //
+// // filter nullable
 
 // const arr3 = ['abc', null, '', undefined, false, '', 123, true]
 
+// // Solution 1
 // const filteredArray = arr3 => {
 //   return arr3.filter(val => val)
 // }
 
-// Solution 2
+// // Solution 2
 // const filteredArray = arr3 => {
 //   return arr3.filter(Boolean)
 // }
@@ -158,6 +153,7 @@
 // console.log(filteredArray(arr3)) // [ 'abc', 123, true ]
 
 // ===================================================== //
+// // Потеря контекста
 
 // const obj = {
 //   a: 40,
@@ -173,6 +169,7 @@
 // obj.say()
 
 // ===================================================== //
+// // Уникальные значения
 
 // const nonUnique = [1, 2, 45, 3, 2, 1, 3, 2, 1, 45, 5]
 
@@ -191,6 +188,7 @@
 // console.log(uniqueItems(nonUnique)) // [ 1, 2, 45, 3, 5 ]
 
 // // ===================================================== //
+// // Ссылка
 
 // const arr1 = [{company: 'CompanyName'}]
 // const arr4 = [...arr1]
@@ -199,6 +197,7 @@
 // console.log('arr1', arr1) // [{ company: "dino systems" }]
 
 // ===================================================== //
+// // Микротаски и макротаски
 
 // function something() {
 //   console.log('Script start') // 1
@@ -227,7 +226,6 @@
 // // setTimeout
 
 // ===================================================== //
-
 // // Написать палидром
 // // dog -> god === true
 // // dof -> fod === true
@@ -240,7 +238,6 @@
 // console.log(isPalindrome('racecar1'))
 
 // ===================================================== //
-
 // // Написать реализацию функции flat
 // const array = [1, [2, 3, 4, [5, 6, [7]]], [8, 9]]
 
@@ -268,6 +265,7 @@
 // console.log(flatten(array, 1)) // [1, 2, 3, 4, [ 5, 6, [ 7 ] ], 8, 9]
 
 // ===================================================== //
+// // +sum toString
 
 // function sum(a) {
 //   let currentSum = a
@@ -289,6 +287,7 @@
 // console.log(+sum(6)(-1)(-2)(-3)) // 0
 
 // ===================================================== //
+// // sum(a, b) || sum(a)(b)
 
 // function sum(...args) {
 //   if (args.length === 2) return args[0] + args[1]
@@ -302,14 +301,14 @@
 // console.log(sum(1)(2)) // 3
 
 // ===================================================== //
-
 // // reverse
+
 // const array = [1, 2, 4, 6, 3]
 // console.log([...array].map([].pop, array))
 
 // ===================================================== //
-
 // // bind
+
 // const sum = (x, y) => x + y
 
 // Function.prototype.bind2 = function (context, ...args) {
@@ -324,9 +323,7 @@
 // console.log(plusTen(10))
 
 // ===================================================== //
-
-// // Добавить метод для работы с массивами который будет возвращать
-// // только те значения которые в массиве являются уникальными (то есть встречаются всего один раз)
+// // Добавить метод для работы с массивами который будет возвращать только те значения, которые в массиве являются уникальными (то есть встречаются всего один раз)
 
 // const findUnique = function () {
 //   const result = []
@@ -343,27 +340,28 @@
 // console.log(result)
 
 // ===================================================== //
+// // Typescript Generic
 
 // interface X {
 //     [key: string]: number
 // }
 
 // const x: X = {
-//  a: 1,
-//  b: 2,
-//  c: 3,
-//  d: 4
+//     a: 1,
+//     b: 2,
+//     c: 3,
+//     d: 4
 // }
-//
-//
-// function  getProperty<T extends typeof x, K extends keyof typeof x>(obj: T, key: K): T[K] {
+
+// function getProperty<T extends typeof x, K extends keyof typeof x>(obj: T, key: K): T[K] {
 //     return obj[key]
 // }
-//
+
 // getProperty(x, 'a') // 1
 // getProperty(x, 'm') // error
 
 // ===================================================== //
+// // Микротаски и макротаски
 
 // const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -386,6 +384,7 @@
 // start()
 
 // ===================================================== //
+// // useCallback
 
 // const LiveSearch = () => {
 // const [val, setVal] = useState('');
@@ -417,7 +416,6 @@
 // }
 
 // ===================================================== //
-
 // // Являются ли все символы в строке уникальными
 
 // function isUnique(string) {
@@ -428,7 +426,6 @@
 // console.log(isUnique('abcad'))
 
 // ===================================================== //
-
 // // Анаграммы
 
 // function allAnagrams(arr) {
@@ -440,7 +437,6 @@
 // console.log(allAnagrams(['abcd', 'bdXc', 'cabd']))
 
 // ===================================================== //
-
 // Повернуть матрицу на 90 градусов по часовой стрелке
 
 // const matrix = [
@@ -468,8 +464,7 @@
 // print(rotate(matrix))
 
 // ===================================================== //
-
-// Вывести матрицу, обозначить цветом единицы
+// // Вывести матрицу, обозначить цветом единицы
 
 // import {StrictMode} from 'react'
 // import ReactDOM from 'react-dom'
@@ -497,7 +492,6 @@
 // )
 
 // ===================================================== //
-
 // // Кэш функции с результатом
 
 // function cache(func) {
@@ -540,7 +534,6 @@
 // console.log('result', result)
 
 // ===================================================== //
-
 // // Учитывая массив, поверните массив вправо k пошагово, где k неотрицательно.
 
 // const nums = [1, 2, 3, 4, 5, 6, 7]
@@ -558,9 +551,8 @@
 // console.log(nums) // [5, 6, 7, 1, 2, 3, 4]
 
 // ===================================================== //
+// // Для заданного целочисленного массива nums возвращайте значение, true если какое-либо значение встречается в массиве не менее двух раз, и возвращайте значение, false если все элементы различны.
 
-// Для заданного целочисленного массива nums возвращайте значение, true если какое-либо значение встречается в массиве не менее двух раз, и возвращайте значение, false если все элементы различны.
+// const nums = [1, 2, 3, 1]
 
-const nums = [1, 2, 3, 1]
-
-console.log(String(nums) !== String([...new Set(nums)]))
+// console.log(String(nums) !== String([...new Set(nums)]))

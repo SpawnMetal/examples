@@ -232,5 +232,5 @@ f2() // this = {}
 f2.call(person) // this = {}
 person.f2() // this = {}
 person.f4() // this = {}
-person.delayLog()
+person.delayLog() // Elena 20
 //#endregion ContextNewExample
