@@ -553,6 +553,13 @@
 // ===================================================== //
 // // Для заданного целочисленного массива nums возвращайте значение, true если какое-либо значение встречается в массиве не менее двух раз, и возвращайте значение, false если все элементы различны.
 
-// const nums = [1, 2, 3, 1]
+const nums = [1, 2, 3, 1]
 
-// console.log(String(nums) !== String([...new Set(nums)]))
+// Sort nums
+nums.sort((a, b) => a - b)
+
+// Solution 1
+console.log(String(nums) !== String([...new Set(nums)]))
+
+// Solution 2
+console.log(nums.some((value, index) => nums.indexOf(value) !== index))
