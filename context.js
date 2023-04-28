@@ -201,10 +201,10 @@
 
 //#region ContextNewExample
 function f() {
-  console.log(this)
+  console.log('f', this)
 }
 
-const f2 = () => console.log(this)
+const f2 = () => console.log('f2', this)
 
 const person = {
   name: 'Elena',
@@ -212,12 +212,12 @@ const person = {
   f,
   f2,
   f3: function () {
-    return () => console.log(this)
+    return () => console.log('f3', this)
   },
-  f4: () => console.log(this),
+  f4: () => console.log('f4', this),
   delayLog: function () {
     setTimeout(() => {
-      console.log(this.name + ' ' + this.age)
+      console.log('setTimeout', this.name + ' ' + this.age)
     }, 500)
   },
 }

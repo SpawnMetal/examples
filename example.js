@@ -75,7 +75,7 @@
 //   this.color = color
 //   ;(() => console.log('Arrow', this.color))()
 //   ;(function () {
-//     console.log('Arrow', this.color)
+//     console.log('function', this.color)
 //   })()
 // }
 // FnNew('red')
@@ -130,7 +130,7 @@
 // const arr2 = arr // arr
 
 // const temp = arr.unshift(12) // 12 1 2 3
-// arr2.push(14) // 1 2 3 14
+// arr2.push(14) // 12 1 2 3 14
 
 // console.log(temp) // 4 // unshift returns the new length of the array.
 // console.log(arr) // 12 1 2 3 14
@@ -241,11 +241,11 @@
 // // Написать реализацию функции flat
 // const array = [1, [2, 3, 4, [5, 6, [7]]], [8, 9]]
 
-// // // Solution 1
+// // Solution 1
 // const flattened = arr => [].concat(...arr)
 
-// // // Solution 2
-// // const flattened = arr => arr.reduce((acc, val) => acc.concat(val), [])
+// // Solution 2
+// const flattened = arr => arr.reduce((acc, val) => acc.concat(val), [])
 
 // function flatten(ary, depth = -1) {
 //   for (const val of ary)
@@ -260,6 +260,7 @@
 // }
 
 // console.log(flatten(array)) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+// console.log(flatten(array, Infinity)) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 // console.log(flatten(array, 3)) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 // console.log(flatten(array, 2)) // [1, 2, 3, 4, 5, 6, [ 7 ], 8, 9]
 // console.log(flatten(array, 1)) // [1, 2, 3, 4, [ 5, 6, [ 7 ] ], 8, 9]
@@ -325,12 +326,23 @@
 // ===================================================== //
 // // Добавить метод для работы с массивами который будет возвращать только те значения, которые в массиве являются уникальными (то есть встречаются всего один раз)
 
+// // Solution 1
 // const findUnique = function () {
 //   const result = []
 //   for (const value of this) {
 //     filter = this.filter(par => par === value)
 //     if (filter.length === 1) result.push(value)
 //   }
+
+//   return result
+// }
+
+// // Solution 2
+// const findUnique = function () {
+//   const result = []
+//   const numbersCount = {}
+//   for (const value of this) numbersCount[value] === undefined ? (numbersCount[value] = 1) : numbersCount[value]++
+//   for (const value of this) numbersCount[value] === 1 && result.push(value)
 
 //   return result
 // }
@@ -553,13 +565,13 @@
 // ===================================================== //
 // // Для заданного целочисленного массива nums возвращайте значение, true если какое-либо значение встречается в массиве не менее двух раз, и возвращайте значение, false если все элементы различны.
 
-const nums = [1, 2, 3, 1]
+// const nums = [1, 2, 3, 1]
 
-// Sort nums
-nums.sort((a, b) => a - b)
+// // Sort nums
+// nums.sort((a, b) => a - b)
 
-// Solution 1
-console.log(String(nums) !== String([...new Set(nums)]))
+// // Solution 1
+// console.log(String(nums) !== String([...new Set(nums)]))
 
-// Solution 2
-console.log(nums.some((value, index) => nums.indexOf(value) !== index))
+// // Solution 2
+// console.log(nums.some((value, index) => nums.indexOf(value) !== index))
