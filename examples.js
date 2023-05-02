@@ -15,7 +15,7 @@ else console.log('false')
 if ([0] == true) console.log('true')
 else console.log('false') // false
 if ([1] == true) console.log('true') // true
-else console.log('false') // false
+else console.log('false')
 console.log('' == 0) // true
 console.log('' == []) // true
 console.log('' == {}) // false

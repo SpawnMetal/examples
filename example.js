@@ -575,3 +575,50 @@
 
 // // Solution 2
 // console.log(nums.some((value, index) => nums.indexOf(value) !== index))
+
+// ===================================================== //
+// // .map
+
+// Array.prototype.myMap = function (callback) {
+//   let res = []
+
+//   for (let i of this) res.push(callback(i))
+
+//   return res
+// }
+
+// let arr = [2, 5, 3]
+// let res = arr.myMap(par => `Значение = ${par}`)
+
+// console.log(res)
+
+// ===================================================== //
+// Рекурсивно обойти дерево и вернуть сумму веток
+
+const tree = {
+  value: 5,
+  left: {
+    value: 1,
+    left: {
+      value: 5,
+    },
+  },
+  right: {
+    value: 10,
+    left: {
+      value: 20,
+    },
+    right: {
+      value: 30,
+    },
+  },
+}
+
+function sumTree(tree) {
+  let sum = tree.value
+  if (tree.left) sum += sumTree(tree.left)
+  if (tree.right) sum += sumTree(tree.right)
+  return sum
+}
+
+console.log(sumTree(tree))
