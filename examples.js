@@ -380,6 +380,17 @@
 //   return result
 // }
 
+// // Solution 3
+// Array.prototype.findUnique = function () {
+//   const result = []
+//   const obj = {}
+
+//   for (const value of this) obj[value] === undefined ? (obj[value] = 1) : obj[value]++
+//   for (const key of Object.keys(obj)) obj[key] === 1 && result.push(+key)
+
+//   return result
+// }
+
 // Array.prototype.findUnique = findUnique
 // const result = [10, 5, 6, 10, 6, 7, 2].findUnique() // 5 7 2
 // console.log(result)
@@ -473,9 +484,18 @@
 // ===================================================== //
 // // Анаграммы
 
+// // Solution 1
+
 // function allAnagrams(arr) {
 //   const newArr = arr.map(str => str.split('').sort().join(''))
 //   return newArr.every(str => str === newArr[0])
+// }
+
+// // Solution 2
+
+// function allAnagrams(array) {
+//   for (let i = 1; i < array.length; i++) if (array[0] !== array[i].split('').sort().join('')) return false
+//   return true
 // }
 
 // console.log(allAnagrams(['abcd', 'bdac', 'cabd']))
@@ -490,12 +510,30 @@
 //   [7, 8, 9], // [9, 6, 3]
 // ]
 
+// // Solution 1
+
 // function rotate(source) {
 //   const result = JSON.parse(JSON.stringify(source))
 
 //   for (const iStr in source) {
 //     for (const iEl in source[iStr]) {
 //       result[iEl][source[iStr].length - iStr - 1] = source[iStr][iEl]
+//     }
+//   }
+
+//   return result
+// }
+
+// // Solution 2
+
+// function rotate(matrix) {
+//   const result = []
+
+//   for (let i = 0; i < matrix.length; i++) {
+//     const str = matrix[i]
+//     for (let j = 0; j < str.length; j++) {
+//       result[j] = result[j] ?? []
+//       result[j].unshift(str[j])
 //     }
 //   }
 
