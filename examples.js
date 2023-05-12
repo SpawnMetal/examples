@@ -547,37 +547,9 @@
 // print(rotate(matrix))
 
 // ===================================================== //
-// // Вывести матрицу, обозначить цветом единицы
-
-// import {StrictMode} from 'react'
-// import ReactDOM from 'react-dom'
-
-// const rootElement = document.getElementById('root')
-
-// const matrix = [
-//   [1, 0, 1, 0, 1],
-//   [0, 0, 0, 1, 1],
-//   [1, 0, 0, 1, 0],
-//   [1, 0, 1, 1, 1],
-//   [0, 0, 1, 1, 0],
-// ]
-
-// const showMatrix = arr => {
-//   if (Array.isArray(arr)) return <div style={{display: 'flex', flexDirection: 'column'}}>{arr.map(value => showMatrix(value))}</div>
-//   else return <div style={{display: 'flex', flexDirection: 'row', color: arr ? '#ff0000' : '#000'}}>{arr}</div>
-// }
-
-// ReactDOM.render(
-//   <StrictMode>
-//     <div style={{display: 'flex'}}>{matrix.map(value => showMatrix(value))}</div>
-//   </StrictMode>,
-//   rootElement
-// )
-
-// ===================================================== //
 // // Кэш функции с результатом
 
-// function cache(func) {
+// function cache(callback) {
 //   const cached = new Map()
 
 //   return function (...args) {
@@ -590,7 +562,7 @@
 //       return cached.get(key)
 //     } else {
 //       console.log('no cache')
-//       const result = func(...args)
+//       const result = callback(...args)
 //       cached.set(key, result)
 //       return result
 //     }
