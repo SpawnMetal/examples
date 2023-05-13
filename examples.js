@@ -1,5 +1,6 @@
 // ===================================================== //
-// // Замыкание
+// Замыкание
+
 // // Пример 1, простейший
 // function createCalc(n)
 // {
@@ -70,7 +71,7 @@
 // result[4]()
 
 // ===================================================== //
-// // setTimeout
+// setTimeout
 
 // i === 5
 // for (var i = 0; i < 5; i++)
@@ -102,7 +103,7 @@
 //   )
 
 // ===================================================== //
-// // Прототипы
+// Прототипы
 
 // function FnNew(color) {
 //   this.color = color
@@ -156,7 +157,7 @@
 // console.log(myYear.year)
 
 // ===================================================== //
-// // unshift & push
+// unshift & push
 
 // const arr = [1, 2, 3]
 
@@ -169,7 +170,7 @@
 // console.log(arr) // 12 1 2 3 14
 
 // ===================================================== //
-// // filter nullable
+// filter nullable
 
 // const arr3 = ['abc', null, '', undefined, false, '', 123, true]
 
@@ -186,7 +187,7 @@
 // console.log(filteredArray(arr3)) // [ 'abc', 123, true ]
 
 // ===================================================== //
-// // Потеря контекста
+// Потеря контекста
 
 // const obj = {
 //   a: 40,
@@ -202,7 +203,7 @@
 // obj.say()
 
 // ===================================================== //
-// // Уникальные значения
+// Уникальные значения
 
 // const nonUnique = [1, 2, 45, 3, 2, 1, 3, 2, 1, 45, 5]
 
@@ -220,8 +221,8 @@
 
 // console.log(uniqueItems(nonUnique)) // [ 1, 2, 45, 3, 5 ]
 
-// // ===================================================== //
-// // Ссылка
+// ===================================================== //
+// Ссылка
 
 // const arr1 = [{company: 'CompanyName'}]
 // const arr4 = [...arr1]
@@ -230,7 +231,7 @@
 // console.log('arr1', arr1) // [{ company: "dino systems" }]
 
 // ===================================================== //
-// // Микротаски и макротаски
+// Микротаски и макротаски
 
 // function something() {
 //   console.log('Script start') // 1
@@ -259,9 +260,9 @@
 // // setTimeout
 
 // ===================================================== //
-// // Написать палидром
-// // dog -> god === true
-// // dof -> fod === true
+// Написать палидром
+// dog -> god === true
+// dof -> fod === true
 
 // function isPalindrome(str) {
 //   return str === str.split('').reverse().join('')
@@ -271,7 +272,7 @@
 // console.log(isPalindrome('racecar1'))
 
 // ===================================================== //
-// // Написать реализацию функции flat
+// Написать реализацию функции flat
 // const array = [1, [2, 3, 4, [5, 6, [7]]], [8, 9]]
 
 // // Solution 1
@@ -299,7 +300,7 @@
 // console.log(flatten(array, 1)) // [1, 2, 3, 4, [ 5, 6, [ 7 ] ], 8, 9]
 
 // ===================================================== //
-// // +sum toString
+// +sum toString
 
 // function sum(a) {
 //   let currentSum = a
@@ -321,7 +322,7 @@
 // console.log(+sum(6)(-1)(-2)(-3)) // 0
 
 // ===================================================== //
-// // sum(a, b) || sum(a)(b)
+// sum(a, b) || sum(a)(b)
 
 // function sum(...args) {
 //   if (args.length === 2) return args[0] + args[1]
@@ -335,13 +336,13 @@
 // console.log(sum(1)(2)) // 3
 
 // ===================================================== //
-// // reverse
+// reverse
 
 // const array = [1, 2, 4, 6, 3]
 // console.log([...array].map([].pop, array))
 
 // ===================================================== //
-// // bind
+// bind
 
 // const sum = (x, y) => x + y
 
@@ -357,7 +358,7 @@
 // console.log(plusTen(10))
 
 // ===================================================== //
-// // Добавить метод для работы с массивами который будет возвращать только те значения, которые в массиве являются уникальными (то есть встречаются всего один раз)
+// Добавить метод для работы с массивами который будет возвращать только те значения, которые в массиве являются уникальными (то есть встречаются всего один раз)
 
 // // Solution 1
 // const findUnique = function () {
@@ -396,7 +397,7 @@
 // console.log(result)
 
 // ===================================================== //
-// // Typescript Generic
+// Typescript Generic
 
 // interface X {
 //     [key: string]: number
@@ -417,7 +418,7 @@
 // getProperty(x, 'm') // error
 
 // ===================================================== //
-// // Микротаски и макротаски
+// Микротаски и макротаски
 
 // const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -440,7 +441,7 @@
 // start()
 
 // ===================================================== //
-// // useCallback
+// useCallback
 
 // const LiveSearch = () => {
 // const [val, setVal] = useState('');
@@ -472,7 +473,7 @@
 // }
 
 // ===================================================== //
-// // Являются ли все символы в строке уникальными
+// Являются ли все символы в строке уникальными
 
 // function isUnique(string) {
 //   return new Set(string).size === string.length
@@ -482,7 +483,7 @@
 // console.log(isUnique('abcad'))
 
 // ===================================================== //
-// // Анаграммы
+// Анаграммы
 
 // // Solution 1
 
@@ -547,7 +548,7 @@
 // print(rotate(matrix))
 
 // ===================================================== //
-// // Кэш функции с результатом
+// Кэш функции с результатом
 
 // function cache(callback) {
 //   const cached = new Map()
@@ -589,7 +590,7 @@
 // console.log('result', result)
 
 // ===================================================== //
-// // Учитывая массив, поверните массив вправо k пошагово, где k неотрицательно.
+// Учитывая массив, поверните массив вправо k пошагово, где k неотрицательно.
 
 // const nums = [1, 2, 3, 4, 5, 6, 7]
 // const k = 3
@@ -606,7 +607,7 @@
 // console.log(nums) // [5, 6, 7, 1, 2, 3, 4]
 
 // ===================================================== //
-// // Для заданного целочисленного массива nums возвращайте значение, true если какое-либо значение встречается в массиве не менее двух раз, и возвращайте значение, false если все элементы различны.
+// Для заданного целочисленного массива nums возвращайте значение, true если какое-либо значение встречается в массиве не менее двух раз, и возвращайте значение, false если все элементы различны.
 
 // const nums = [1, 2, 3, 1]
 
@@ -620,7 +621,7 @@
 // console.log(nums.some((value, index) => nums.indexOf(value) !== index))
 
 // ===================================================== //
-// // .map
+// .map
 
 // Array.prototype.myMap = function (callback) {
 //   let res = []
@@ -669,47 +670,169 @@
 // ===================================================== //
 // Логические выражения
 
-console.log(Boolean({})) // true
-console.log(Boolean([])) // true
-console.log(Boolean(function () {})) // true
-console.log(Number('')) // 0
-console.log(4 + 10 + 'px') // number
-console.log('px' + 4 + 10) // string
-console.log(null + 2) // 2
-console.log(undefined + 2) // NaN
-console.log(Boolean('0')) // true
-console.log('0' == false) // true т. к. интерпретатор переводит '0' в число
-console.log(false == []) // true
-console.log(false == {}) // false
-if ([]) console.log('true') // true
-else console.log('false')
-if ([0] == true) console.log('true')
-else console.log('false') // false
-if ([1] == true) console.log('true') // true
-else console.log('false')
-console.log('' == 0) // true
-console.log('' == []) // true
-console.log('' == {}) // false
-console.log(0 == []) // true
-console.log(0 == {}) // false
-console.log(0 == null) // false
+// console.log(Boolean({})) // true
+// console.log(Boolean([])) // true
+// console.log(Boolean(function () {})) // true
+// console.log(Number('')) // 0
+// console.log(4 + 10 + 'px') // number
+// console.log('px' + 4 + 10) // string
+// console.log(null + 2) // 2
+// console.log(undefined + 2) // NaN
+// console.log(Boolean('0')) // true
+// console.log('0' == false) // true т. к. интерпретатор переводит '0' в число
+// console.log(false == []) // true
+// console.log(false == {}) // false
+// if ([]) console.log('true') // true
+// else console.log('false')
+// if ([0] == true) console.log('true')
+// else console.log('false') // false
+// if ([1] == true) console.log('true') // true
+// else console.log('false')
+// console.log('' == 0) // true
+// console.log('' == []) // true
+// console.log('' == {}) // false
+// console.log(0 == []) // true
+// console.log(0 == {}) // false
+// console.log(0 == null) // false
+// console.log(null == []) // false
 
-let obj = {a: 1}
-Object.freeze(obj)
-obj.b = 2
-console.log(obj)
+// let obj = {a: 1}
+// Object.freeze(obj)
+// obj.b = 2
+// console.log(obj)
 
-// --rebase test master 1
-// --rebase test master 2
-// --rebase test master 3
-// --rebase test master 4
-// --rebase test develop 1
-// --rebase test develop 2
-// --rebase test develop 3
-// --rebase test develop 4
+// // --rebase test master 1
+// // --rebase test master 2
+// // --rebase test master 3
+// // --rebase test master 4
+// // --rebase test develop 1
+// // --rebase test develop 2
+// // --rebase test develop 3
+// // --rebase test develop 4
 
-console.log(typeof null) // object
-console.log(typeof function () {}) // function
-console.log(typeof class C {}) // function
-console.log(typeof (2 / 0)) // number. Infinity === 'number'
-console.log(typeof (2 / 'a')) // number. NaN === 'number'
+// console.log(typeof null) // object
+// console.log(typeof function () {}) // function
+// console.log(typeof class C {}) // function
+// console.log(typeof (2 / 0)) // number. Infinity === 'number'
+// console.log(typeof (2 / 'a')) // number. NaN === 'number'
+
+// ===================================================== //
+// Вы живете в городе Картезия, где все дороги выложены идеальной сеткой. Вы пришли на встречу на десять минут раньше назначенного срока, поэтому решили воспользоваться возможностью прогуляться. Город предоставляет своим горожанам приложение Walk Generating на их телефонах — каждый раз, когда вы нажимаете кнопку, оно отправляет вам массив строк из одной буквы, представляющих направления ходьбы (например, ['n', 's', 'w', «е»]). Вы всегда проходите только один квартал для каждой буквы (направления), и вы знаете, что вам потребуется одна минута, чтобы пройти один городской квартал, поэтому создайте функцию, которая будет возвращать true, если прогулка, которую предлагает вам приложение, займет у вас ровно десять минут (вы не хочу ни рано, ни поздно!) и, конечно же, вернет вас в исходную точку. В противном случае верните false .
+
+// Примечание . Вы всегда будете получать допустимый массив, содержащий случайный набор букв направления (только «n», «s», «e» или «w»). Он никогда не даст вам пустой массив (это не прогулка, это стояние на месте!).
+
+// const chai = require('chai')
+// const assert = chai.assert
+// chai.config.truncateThreshold = 0
+
+// function isValidWalk(walk) {
+//   if (walk.length !== 10) return false
+
+//   let x = 0
+//   let y = 0
+
+//   for (let value of walk) {
+//     if (value === 'w') x++
+//     else if (value === 'e') x--
+//     else if (value === 'n') y++
+//     else if (value === 's') y--
+//   }
+
+//   return x === 0 && y === 0
+// }
+
+// describe('Tests', () => {
+//   it('test', () => {
+//     console.log('test')
+//     //some test cases for you...
+//     assert.isTrue(isValidWalk(['n', 's', 'n', 's', 'n', 's', 'n', 's', 'n', 's']), 'should return true')
+//     assert.isFalse(isValidWalk(['w', 'e', 'w', 'e', 'w', 'e', 'w', 'e', 'w', 'e', 'w', 'e']), 'should return false')
+//     assert.isFalse(isValidWalk(['w']), 'should return false')
+//     assert.isFalse(isValidWalk(['n', 'n', 'n', 's', 'n', 's', 'n', 's', 'n', 's']), 'should return false')
+//   })
+// })
+
+// ===================================================== //
+// Дан массив целых чисел, найдите то, которое встречается нечетное количество раз.
+// Всегда будет только одно целое число, которое встречается нечетное количество раз.
+
+// Примеры
+// [7]должен вернуть 7, потому что это происходит 1 раз (что нечетно).
+// [0]должен вернуть 0, потому что это происходит 1 раз (что нечетно).
+// [1,1,2]должен вернуть 2, потому что это происходит 1 раз (что нечетно).
+// [0,1,0,1,0]должен вернуть 0, потому что он встречается 3 раза (что нечетно).
+// [1,2,2,3,3,3,4,3,3,3,2,2,1]должен вернуть 4, потому что он появляется 1 раз (что нечетно).
+
+// const assert = require('chai').assert
+
+// // Solution 1
+// function findOdd(A) {
+//   const result = {}
+//   for (let value of A) result[value] === undefined ? (result[value] = 1) : result[value]++
+//   for (let key of Object.keys(result)) if (result[key] % 2 !== 0) return +key
+// }
+
+// // Solution 2
+// // Побитовое исключающее ИЛИ (^)
+// // Повторяющиеся схлопнутся
+// // const findOdd = A => A.reduce((a, b) => a ^ b)
+
+// describe('Example tests', function () {
+//   function doTest(a, n) {
+//     assert.strictEqual(findOdd(a), n, `Incorrect answer for input=[${a}]`)
+//   }
+
+//   it('Example tests', () => {
+//     doTest([7], 7)
+//     doTest([0], 0)
+//     doTest([1, 1, 2], 2)
+//     doTest([0, 1, 0, 1, 0], 0)
+//     doTest([1, 2, 2, 3, 3, 3, 4, 3, 3, 3, 2, 2, 1], 4)
+//   })
+
+//   it('Fixed tests', () => {
+//     doTest([20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5], 5)
+//     doTest([1, 1, 2, -2, 5, 2, 4, 4, -1, -2, 5], -1)
+//     doTest([20, 1, 1, 2, 2, 3, 3, 5, 5, 4, 20, 4, 5], 5)
+//     doTest([10], 10)
+//     doTest([1, 1, 1, 1, 1, 1, 10, 1, 1, 1, 1], 10)
+//     doTest([5, 4, 3, 2, 1, 5, 4, 3, 2, 10, 10], 1)
+//   })
+// })
+
+// ===================================================== //
+// Проверьте, содержит ли строка одинаковое количество «x» и «o». Метод должен возвращать логическое значение и не учитывать регистр. Строка может содержать любой символ.
+// Примеры ввода/вывода:
+
+// XO("ooxx") => true
+// XO("xooxx") => false
+// XO("ooxXm") => true
+// XO("zpzpzpp") => true // when no 'x' and 'o' is present should return true
+// XO("zzoo") => false
+
+// const Test = require('@codewars/test-compat')
+
+// // Solution 1
+// function XO(str) {
+//   const result = {x: 0, o: 0}
+//   for (let value of str) {
+//     value = value.toLowerCase()
+//     if (result[value] !== undefined) result[value]++
+//   }
+//   return result.x === result.o
+// }
+
+// // Solution 2
+// function XO(str) {
+//   return str.toLowerCase().split('x').length === str.toLowerCase().split('o').length
+// }
+
+// describe("Tests", () => {
+//   it("test", () => {
+//     Test.assertEquals(XO('xo'),true);
+//     Test.assertEquals(XO("xxOo"),true);
+//     Test.assertEquals(XO("xxxm"),false);
+//     Test.assertEquals(XO("Oo"),false);
+//     Test.assertEquals(XO("ooom"),false);
+//   });
+// });
