@@ -836,3 +836,59 @@
 //     Test.assertEquals(XO("ooom"),false);
 //   });
 // });
+
+// ===================================================== //
+// Проверка на расстановку кораблей в морском бое
+
+const field = [
+  [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+  [1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+  [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+  [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+  [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+]
+
+function validateBattlefield(field) {
+  const matrix = 10
+  const sheeps = {4: 1, 3: 2, 2: 3, 1: 4}
+  const postedSheeps = {}
+  for (const sheep in sheeps) postedSheeps[sheep] = 0
+  const checkeds = [...Array(matrix)].map(() => Array(matrix).fill(false))
+
+  for (let y = 0; y < field.length; y++)
+    for (let x = 0; x < field[y].length; x++)
+      if (field[y][x] && !checkeds[y][x]) {
+        let sheepX = 0
+        let sheepY = 0
+
+        while (field[y + sheepY][x + sheepX]) {
+          checkeds[y + sheepY][x + sheepX] = true
+          // We look only at the left and right bottom
+          if (field[y + sheepY + 1][x + sheepX - 1]) return false
+          if (field[y + sheepY + 1][x + sheepX + 1]) return false
+          checkeds[y + sheepY + 1][x + sheepX - 1] = true
+          checkeds[y + sheepY + 1][x + sheepX + 1] = true
+
+          if (field[y][x + sheepX + 1]) sheepX++
+          else if (field[y + sheepY + 1][x]) sheepY++
+          else break
+        }
+
+        const sheep = (sheepX ? sheepX : sheepY) + 1
+        postedSheeps[sheep]++
+
+        // This ship does not exist or the number of ships is over the limit
+        if (!sheeps[sheep] || postedSheeps[sheep] > sheeps[sheep]) return false
+      }
+
+  for (const sheep of Object.keys(sheeps)) if (postedSheeps[sheep] !== sheeps[sheep]) return false
+
+  return true
+}
+
+console.log(validateBattlefield(field))
