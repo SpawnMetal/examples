@@ -85,3 +85,24 @@
 // export const black = {
 //   color: '#000',
 // }
+
+// ===================================================== //
+// Typescript Generic
+
+// interface X {
+//     [key: string]: number
+// }
+
+// const x: X = {
+//     a: 1,
+//     b: 2,
+//     c: 3,
+//     d: 4
+// }
+
+// function getProperty<T extends typeof x, K extends keyof typeof x>(obj: T, key: K): T[K] {
+//     return obj[key]
+// }
+
+// getProperty(x, 'a') // 1
+// getProperty(x, 'm') // error
