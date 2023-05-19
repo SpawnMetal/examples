@@ -273,6 +273,7 @@
 
 // ===================================================== //
 // Написать реализацию функции flat
+
 // const array = [1, [2, 3, 4, [5, 6, [7]]], [8, 9]]
 
 // // Solution 1
@@ -819,55 +820,260 @@
 // ===================================================== //
 // Проверка на расстановку кораблей в морском бое
 
-const field = [
-  [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
-  [1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
-  [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-  [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-  [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-]
+// const field = [
+//   [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+//   [1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+//   [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+//   [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+//   [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+// ]
 
-function validateBattlefield(field) {
-  const matrix = 10
-  const sheeps = {4: 1, 3: 2, 2: 3, 1: 4}
-  const postedSheeps = {}
-  for (const sheep in sheeps) postedSheeps[sheep] = 0
-  const checkeds = [...Array(matrix)].map(() => Array(matrix).fill(false))
+// function validateBattlefield(field) {
+//   const matrix = 10
+//   const sheeps = {4: 1, 3: 2, 2: 3, 1: 4}
+//   const postedSheeps = {}
+//   for (const sheep in sheeps) postedSheeps[sheep] = 0
+//   const checkeds = [...Array(matrix)].map(() => Array(matrix).fill(false))
 
-  for (let y = 0; y < field.length; y++)
-    for (let x = 0; x < field[y].length; x++)
-      if (field[y][x] && !checkeds[y][x]) {
-        let sheepX = 0
-        let sheepY = 0
+//   for (let y = 0; y < field.length; y++)
+//     for (let x = 0; x < field[y].length; x++)
+//       if (field[y][x] && !checkeds[y][x]) {
+//         let sheepX = 0
+//         let sheepY = 0
 
-        while (field[y + sheepY][x + sheepX]) {
-          checkeds[y + sheepY][x + sheepX] = true
-          // We look only at the left and right bottom
-          if (field[y + sheepY + 1][x + sheepX - 1]) return false
-          if (field[y + sheepY + 1][x + sheepX + 1]) return false
-          checkeds[y + sheepY + 1][x + sheepX - 1] = true
-          checkeds[y + sheepY + 1][x + sheepX + 1] = true
+//         while (field[y + sheepY][x + sheepX]) {
+//           checkeds[y + sheepY][x + sheepX] = true
+//           // We look only at the left and right bottom
+//           if (field[y + sheepY + 1][x + sheepX - 1]) return false
+//           if (field[y + sheepY + 1][x + sheepX + 1]) return false
+//           checkeds[y + sheepY + 1][x + sheepX - 1] = true
+//           checkeds[y + sheepY + 1][x + sheepX + 1] = true
 
-          if (field[y][x + sheepX + 1]) sheepX++
-          else if (field[y + sheepY + 1][x]) sheepY++
-          else break
-        }
+//           if (field[y][x + sheepX + 1]) sheepX++
+//           else if (field[y + sheepY + 1][x]) sheepY++
+//           else break
+//         }
 
-        const sheep = (sheepX ? sheepX : sheepY) + 1
-        postedSheeps[sheep]++
+//         const sheep = (sheepX ? sheepX : sheepY) + 1
+//         postedSheeps[sheep]++
 
-        // This ship does not exist or the number of ships is over the limit
-        if (!sheeps[sheep] || postedSheeps[sheep] > sheeps[sheep]) return false
-      }
+//         // This ship does not exist or the number of ships is over the limit
+//         if (!sheeps[sheep] || postedSheeps[sheep] > sheeps[sheep]) return false
+//       }
 
-  for (const sheep of Object.keys(sheeps)) if (postedSheeps[sheep] !== sheeps[sheep]) return false
+//   for (const sheep of Object.keys(sheeps)) if (postedSheeps[sheep] !== sheeps[sheep]) return false
 
-  return true
+//   return true
+// }
+
+// console.log(validateBattlefield(field))
+
+// ===================================================== //
+/*
+Реализовать строковый шаблонизатор вида:
+expand('Hello, {user.name}!', {user: {name: 'Paul'}});
+который сделает подстановку переменных и вернет "Hello, Paul!".
+
+get(
+  {
+    user: {name: 'Paul'},
+    time: '14:30',
+  },
+  'user.name'
+) // 'Paul'
+
+get(
+  {
+    user: {name: 'Paul'},
+    time: '14:30',
+  },
+  'date.name'
+) // undefined
+*/
+
+// // Solution 1
+// function get(obj, path) {
+//   const p = path.split('.')
+//   let result = obj
+
+//   for (const key of p) {
+//     if (!result?.[key]) return
+
+//     result = result[key]
+//   }
+
+//   return result
+// }
+
+// function expand(template, params) {
+//   let indexEnd = 0
+
+//   while (true) {
+//     let indexStart = template.indexOf('{', indexEnd) // 7
+
+//     if (indexStart === -1) break
+
+//     indexEnd = template.indexOf('}') // 17
+//     const path = template.slice(indexStart + 1, indexEnd) // user.name
+//     const str = get(params, path) // 'Paul'
+//     if (str !== undefined) template = template.replace(`{${path}}`, str)
+//   }
+
+//   return template
+// }
+
+// ===================================================== //
+/**
+ * Список методов API:
+ *  – GET /api/comments?page={page_number}
+ *    Ответ: {"pageCount": 123, comments: [{"id": "...", "text": "..."}]}
+ *  – GET /api/likes?comment={comment_id}
+ *    Ответ: {"like": 123, "dislike": 456}
+ *
+ * Нужно вернуть массив в формате:
+ *   [{"id": "...", "text": "...", "likes":{"like": 123, "dislike": 456}}]
+ */
+
+async function getComments(pageNumber) {
+  const pageCount = 5
+
+  const pages = {
+    1: {
+      pageCount,
+      comments: [
+        {
+          id: '1',
+          text: 'page 1, comment 1',
+        },
+        {
+          id: '2',
+          text: 'page 1, comment 2',
+        },
+      ],
+    },
+    2: {
+      pageCount,
+      comments: [
+        {
+          id: '3',
+          text: 'page 2, comment 3',
+        },
+      ],
+    },
+    3: {
+      pageCount,
+      comments: [
+        {
+          id: '4',
+          text: 'page 3, comment 4',
+        },
+      ],
+    },
+    4: {
+      pageCount,
+      comments: [
+        {
+          id: '5',
+          text: 'page 4, comment 5',
+        },
+        {
+          id: '6',
+          text: 'page 4, comment 6',
+        },
+        {
+          id: '7',
+          text: 'page 4, comment 7',
+        },
+      ],
+    },
+    5: {
+      pageCount,
+      comments: [
+        {
+          id: '8',
+          text: 'page 5, comment 8',
+        },
+      ],
+    },
+  }
+
+  return new Promise((resolve, reject) => {
+    resolve(pages[pageNumber])
+  })
 }
 
-console.log(validateBattlefield(field))
+async function getLikes(commentId) {
+  const likes = {
+    1: {like: 10, dislike: 1},
+    2: {like: 20, dislike: 2},
+    3: {like: 30, dislike: 3},
+    4: {like: 40, dislike: 4},
+    5: {like: 50, dislike: 5},
+    6: {like: 60, dislike: 6},
+    7: {like: 70, dislike: 7},
+    8: {like: 80, dislike: 8},
+  }
+
+  return new Promise((resolve, reject) => {
+    resolve(likes[commentId])
+  })
+}
+
+const result = []
+
+async function getData() {
+  const commentsPromise = []
+  const comment1 = await getComments(1)
+  const pageCount = comment1.pageCount
+
+  const fillResult = comment => getLikes(comment.id).then(like => result.push({...comment, likes: like}))
+
+  for (let page = 2; page <= pageCount; page++) commentsPromise.push(getComments(page))
+  for (const comment of comment1.comments) fillResult(comment)
+
+  Promise.allSettled(commentsPromise).then(commentsPromiseSettled => {
+    //   {
+    //     status: 'fulfilled',
+    //     value: {
+    //       '1': {
+    //         pageCount,
+    //         comments: [
+    //           {
+    //             id: '1',
+    //             text: 'page 1, comment 1',
+    //           },
+    //           {
+    //             id: '2',
+    //             text: 'page 1, comment 2',
+    //           },
+    //         ],
+    //       },
+    //     },
+    //   },
+    //   {
+    //     status: 'fulfilled',
+    //     value: {
+    //       '2': {
+    //         pageCount,
+    //         comments: [
+    //           {
+    //             id: '3',
+    //             text: 'page 2, comment 3',
+    //           },
+    //         ],
+    //       },
+    //     },
+    //   },
+    // ]
+
+    for (const commentPromiseSettled of commentsPromiseSettled) for (const comment of commentPromiseSettled.value.comments) fillResult(comment)
+  })
+}
+
+getData()
+setTimeout(() => console.log(result))
