@@ -755,7 +755,7 @@
 // // Solution 2
 // // Побитовое исключающее ИЛИ (^)
 // // Повторяющиеся схлопнутся
-// // const findOdd = A => A.reduce((a, b) => a ^ b)
+// const findOdd = A => A.reduce((a, b) => a ^ b)
 
 // describe('Example tests', function () {
 //   function doTest(a, n) {
@@ -939,141 +939,460 @@ get(
  *   [{"id": "...", "text": "...", "likes":{"like": 123, "dislike": 456}}]
  */
 
-async function getComments(pageNumber) {
-  const pageCount = 5
+// async function getComments(pageNumber) {
+//   const pageCount = 5
 
-  const pages = {
-    1: {
-      pageCount,
-      comments: [
-        {
-          id: '1',
-          text: 'page 1, comment 1',
-        },
-        {
-          id: '2',
-          text: 'page 1, comment 2',
-        },
-      ],
-    },
-    2: {
-      pageCount,
-      comments: [
-        {
-          id: '3',
-          text: 'page 2, comment 3',
-        },
-      ],
-    },
-    3: {
-      pageCount,
-      comments: [
-        {
-          id: '4',
-          text: 'page 3, comment 4',
-        },
-      ],
-    },
-    4: {
-      pageCount,
-      comments: [
-        {
-          id: '5',
-          text: 'page 4, comment 5',
-        },
-        {
-          id: '6',
-          text: 'page 4, comment 6',
-        },
-        {
-          id: '7',
-          text: 'page 4, comment 7',
-        },
-      ],
-    },
-    5: {
-      pageCount,
-      comments: [
-        {
-          id: '8',
-          text: 'page 5, comment 8',
-        },
-      ],
-    },
-  }
+//   const pages = {
+//     1: {
+//       pageCount,
+//       comments: [
+//         {
+//           id: '1',
+//           text: 'page 1, comment 1',
+//         },
+//         {
+//           id: '2',
+//           text: 'page 1, comment 2',
+//         },
+//       ],
+//     },
+//     2: {
+//       pageCount,
+//       comments: [
+//         {
+//           id: '3',
+//           text: 'page 2, comment 3',
+//         },
+//       ],
+//     },
+//     3: {
+//       pageCount,
+//       comments: [
+//         {
+//           id: '4',
+//           text: 'page 3, comment 4',
+//         },
+//       ],
+//     },
+//     4: {
+//       pageCount,
+//       comments: [
+//         {
+//           id: '5',
+//           text: 'page 4, comment 5',
+//         },
+//         {
+//           id: '6',
+//           text: 'page 4, comment 6',
+//         },
+//         {
+//           id: '7',
+//           text: 'page 4, comment 7',
+//         },
+//       ],
+//     },
+//     5: {
+//       pageCount,
+//       comments: [
+//         {
+//           id: '8',
+//           text: 'page 5, comment 8',
+//         },
+//       ],
+//     },
+//   }
 
-  return new Promise((resolve, reject) => {
-    resolve(pages[pageNumber])
-  })
-}
+//   return new Promise((resolve, reject) => {
+//     resolve(pages[pageNumber])
+//   })
+// }
 
-async function getLikes(commentId) {
-  const likes = {
-    1: {like: 10, dislike: 1},
-    2: {like: 20, dislike: 2},
-    3: {like: 30, dislike: 3},
-    4: {like: 40, dislike: 4},
-    5: {like: 50, dislike: 5},
-    6: {like: 60, dislike: 6},
-    7: {like: 70, dislike: 7},
-    8: {like: 80, dislike: 8},
-  }
+// async function getLikes(commentId) {
+//   const likes = {
+//     1: {like: 10, dislike: 1},
+//     2: {like: 20, dislike: 2},
+//     3: {like: 30, dislike: 3},
+//     4: {like: 40, dislike: 4},
+//     5: {like: 50, dislike: 5},
+//     6: {like: 60, dislike: 6},
+//     7: {like: 70, dislike: 7},
+//     8: {like: 80, dislike: 8},
+//   }
 
-  return new Promise((resolve, reject) => {
-    resolve(likes[commentId])
-  })
-}
+//   return new Promise((resolve, reject) => {
+//     resolve(likes[commentId])
+//   })
+// }
 
-const result = []
+// const result = []
 
-async function getData() {
-  const commentsPromise = []
-  const comment1 = await getComments(1)
-  const pageCount = comment1.pageCount
+// async function getData() {
+//   const commentsPromise = []
+//   const comment1 = await getComments(1)
+//   const pageCount = comment1.pageCount
 
-  const fillResult = comment => getLikes(comment.id).then(like => result.push({...comment, likes: like}))
+//   const fillResult = comment => getLikes(comment.id).then(like => result.push({...comment, likes: like}))
 
-  for (let page = 2; page <= pageCount; page++) commentsPromise.push(getComments(page))
-  for (const comment of comment1.comments) fillResult(comment)
+//   for (let page = 2; page <= pageCount; page++) commentsPromise.push(getComments(page))
+//   for (const comment of comment1.comments) fillResult(comment)
 
-  Promise.allSettled(commentsPromise).then(commentsPromiseSettled => {
-    //   {
-    //     status: 'fulfilled',
-    //     value: {
-    //       '1': {
-    //         pageCount,
-    //         comments: [
-    //           {
-    //             id: '1',
-    //             text: 'page 1, comment 1',
-    //           },
-    //           {
-    //             id: '2',
-    //             text: 'page 1, comment 2',
-    //           },
-    //         ],
-    //       },
-    //     },
-    //   },
-    //   {
-    //     status: 'fulfilled',
-    //     value: {
-    //       '2': {
-    //         pageCount,
-    //         comments: [
-    //           {
-    //             id: '3',
-    //             text: 'page 2, comment 3',
-    //           },
-    //         ],
-    //       },
-    //     },
-    //   },
-    // ]
+//   Promise.allSettled(commentsPromise).then(commentsPromiseSettled => {
+//     //   {
+//     //     status: 'fulfilled',
+//     //     value: {
+//     //       '1': {
+//     //         pageCount,
+//     //         comments: [
+//     //           {
+//     //             id: '1',
+//     //             text: 'page 1, comment 1',
+//     //           },
+//     //           {
+//     //             id: '2',
+//     //             text: 'page 1, comment 2',
+//     //           },
+//     //         ],
+//     //       },
+//     //     },
+//     //   },
+//     //   {
+//     //     status: 'fulfilled',
+//     //     value: {
+//     //       '2': {
+//     //         pageCount,
+//     //         comments: [
+//     //           {
+//     //             id: '3',
+//     //             text: 'page 2, comment 3',
+//     //           },
+//     //         ],
+//     //       },
+//     //     },
+//     //   },
+//     // ]
 
-    for (const commentPromiseSettled of commentsPromiseSettled) for (const comment of commentPromiseSettled.value.comments) fillResult(comment)
-  })
-}
+//     for (const commentPromiseSettled of commentsPromiseSettled) for (const comment of commentPromiseSettled.value.comments) fillResult(comment)
+//   })
+// }
 
-getData()
-setTimeout(() => console.log(result))
+// getData()
+// setTimeout(() => console.log(result))
+
+// ===================================================== //
+// Connect Four — это игра, в которой 2 игрока каждый ход бросают цветной диск в один из столбцов сетки. Когда игрок роняет диск, он занимает следующее доступное место в столбце. Победителем становится игрок, который первым образует линию (вертикальную, диагональную или горизонтальную) из 4 дисков своего цвета.
+
+// Однако в этом ката есть следующие повороты:
+
+// Там нет гравитации, поэтому диск будет просто помещен в положение XY.
+// Пространство игры практически бесконечно, поэтому диск можно разместить в любом положении XY.
+// Игроков может быть больше 2
+// Учитывая игровую ситуацию, когда некоторые диски уже были размещены, вам необходимо определить победителя, если он есть.
+
+// Вход
+// Вход состоит из массива ходов, сделанных во время игры.
+
+// [
+//   {p: 'R', x: 0, y: 0},
+//   {p: 'Y', x: 100, y: 100},
+//   {p: 'R', x: 1, y: 0},
+//   {p: 'Y', x: 99, y: 100},
+//   {p: 'R', x: 2, y: 0},
+//   {p: 'Y', x: 98, y: 100},
+//   {p: 'R', x: 3, y: 0},
+//   {p: 'Y', x: 96, y: 100}
+// ];
+// Вы можете видеть в этом примере, что игрок R выиграл, сделав линию
+
+// {x: 0, y: 0}{x: 1, y: 0}{x: 2, y: 0}{x: 3, y: 0}
+// Имейте в виду, что ходы НЕ упорядочены по времени, это пример, который хорошо подходит для описания обычного матча, но ходы, которые вы получите, будут в случайном порядке.
+
+// Выход
+// Вы должны вернуть игрока, который выиграл, в виде строки, в приведенном выше примере вы бы вернули'R'
+
+// Если нет победителя, вы должны вернуть null
+
+// Ограничения
+// По стандартным правилам, вы должны проверять по строкам, столбцам и диагоналям.
+// Если есть победитель, будет только один
+// Вы не получите пустой массив или недопустимые входные данные
+// Не будет дубликатов точек
+
+// // R
+// const moves1 = [
+//   {p: 'R', x: 0, y: 0},
+//   {p: 'Y', x: 100, y: 100},
+//   {p: 'R', x: 1, y: 0},
+//   {p: 'Y', x: 99, y: 100},
+//   {p: 'R', x: 2, y: 0},
+//   {p: 'Y', x: 98, y: 100},
+//   {p: 'R', x: 3, y: 0},
+//   {p: 'Y', x: 96, y: 100},
+// ]
+
+// // Y
+// const moves2 = [
+//   {p: 'R', x: 15, y: 15},
+//   {p: 'Y', x: 10, y: 10},
+//   {p: 'Y', x: 10, y: 11},
+//   {p: 'Y', x: 10, y: 12},
+//   {p: 'Y', x: 10, y: 13},
+//   {p: 'R', x: 15, y: 16},
+//   {p: 'R', x: 16, y: 15},
+//   {p: 'R', x: 16, y: 16},
+// ]
+
+// // G
+// const moves3 = [
+//   {p: 'G', x: 0, y: 0},
+//   {p: 'Y', x: 0, y: 1},
+//   {p: 'G', x: 1, y: 1},
+//   {p: 'Y', x: 1, y: 2},
+//   {p: 'G', x: 2, y: 2},
+//   {p: 'Y', x: 2, y: 3},
+//   {p: 'G', x: -1, y: -1},
+//   {p: 'Y', x: 3, y: 3},
+// ]
+
+// // null
+// const moves4 = [
+//   {p: 'A', x: 50, y: -50},
+//   {p: 'B', x: 49, y: -50},
+//   {p: 'C', x: 48, y: -50},
+//   {p: 'D', x: 50, y: -49},
+//   {p: 'A', x: 51, y: -50},
+//   {p: 'B', x: 49, y: -49},
+//   {p: 'C', x: 48, y: -51},
+//   {p: 'D', x: 51, y: -49},
+// ]
+
+// // E
+// const moves5 = [
+//   {p: 'P', x: 0, y: 1},
+//   {p: 'P', x: 0, y: -1},
+//   {p: 'P', x: 0, y: -2},
+//   {p: 'P', x: 0, y: -3},
+//   {p: 'E', x: 0, y: 0},
+//   {p: 'E', x: 1, y: -1},
+//   {p: 'E', x: 2, y: -2},
+//   {p: 'E', x: 3, y: -3},
+// ]
+
+// // E
+// const moves6 = [
+//   {p: 'P', x: 0, y: 10},
+//   {p: 'P', x: 0, y: 4},
+//   {p: 'P', x: 0, y: 10},
+//   {p: 'P', x: 0, y: 10},
+//   {p: 'E', x: 0, y: 0},
+//   {p: 'E', x: 1, y: -1},
+//   {p: 'E', x: 2, y: -2},
+//   {p: 'E', x: 3, y: -3},
+// ]
+
+// // P
+// const moves7 = [
+//   {p: 'P', x: 0, y: 0},
+//   {p: 'P', x: 2, y: 2},
+//   {p: 'P', x: 3, y: 3},
+//   {p: 'P', x: 1, y: 1},
+//   {p: 'E', x: 0, y: 0},
+//   {p: 'E', x: 1, y: 1},
+//   {p: 'E', x: 2, y: 2},
+//   {p: 'E', x: 3, y: 3},
+// ]
+
+// // E
+// const moves8 = [
+//   {p: 'R', x: 0, y: 3},
+//   {p: 'R', x: 1, y: 1},
+//   {p: 'R', x: 2, y: 0},
+//   {p: 'R', x: 3, y: 2},
+//   {p: 'E', x: 0, y: 0},
+//   {p: 'E', x: 1, y: 1},
+//   {p: 'E', x: 2, y: 2},
+//   {p: 'E', x: 3, y: 3},
+// ]
+
+// // N
+// // {x: 68, y: 69} // {p: 'N', x: -4268, y: -6069},
+// // {x: 67, y: 70} // {p: 'N', x: -4267, y: -6070},
+// // {x: 66, y: 71} // {p: 'N', x: -4266, y: -6071},
+// // {x: 65, y: 72} // {p: 'N', x: -4265, y: -6072},
+// // '[{"x":73,"y":81},{"x":73,"y":80},{"x":72,"y":83},{"x":72,"y":76},{"x":71,"y":86},{"x":69,"y":88},{"x":69,"y":86},{"x":69,"y":71},{"x":68,"y":87},{"x":68,"y":85},{"x":68,"y":84},{"x":68,"y":74},{"x":68,"y":69},{"x":67,"y":85},{"x":67,"y":84},{"x":67,"y":71},{"x":67,"y":70},{"x":66,"y":82},{"x":66,"y":80},{"x":66,"y":78},{"x":66,"y":72},{"x":66,"y":71},{"x":66,"y":70},{"x":65,"y":82},{"x":65,"y":72}]'
+// const moves9 = [
+//   {p: 'N', x: -4266, y: -6078},
+//   {p: 'N', x: -4268, y: -6069},
+//   {p: 'H', x: -4269, y: -6070},
+//   {p: 'N', x: -4269, y: -6071},
+//   {p: 'H', x: -4266, y: -6083},
+//   {p: 'H', x: -4270, y: -6086},
+//   {p: 'N', x: -4267, y: -6085},
+//   {p: 'H', x: -4268, y: -6070},
+//   {p: 'N', x: -4268, y: -6085},
+//   {p: 'H', x: -4266, y: -6081},
+//   {p: 'H', x: -4268, y: -6072},
+//   {p: 'H', x: -4273, y: -6082},
+//   {p: 'H', x: -4265, y: -6071},
+//   {p: 'N', x: -4266, y: -6072},
+//   {p: 'N', x: -4267, y: -6070},
+//   {p: 'H', x: -4273, y: -6083},
+//   {p: 'H', x: -4269, y: -6087},
+//   {p: 'N', x: -4272, y: -6083},
+//   {p: 'H', x: -4265, y: -6084},
+//   {p: 'H', x: -4266, y: -6068},
+//   {p: 'H', x: -4270, y: -6075},
+//   {p: 'N', x: -4269, y: -6088},
+//   {p: 'H', x: -4265, y: -6080},
+//   {p: 'N', x: -4267, y: -6084},
+//   {p: 'H', x: -4267, y: -6086},
+//   {p: 'N', x: -4266, y: -6071},
+//   {p: 'H', x: -4268, y: -6089},
+//   {p: 'N', x: -4267, y: -6071},
+//   {p: 'N', x: -4266, y: -6082},
+//   {p: 'N', x: -4266, y: -6080},
+//   {p: 'N', x: -4269, y: -6086},
+//   {p: 'H', x: -4265, y: -6070},
+//   {p: 'N', x: -4271, y: -6086},
+//   {p: 'H', x: -4269, y: -6084},
+//   {p: 'N', x: -4266, y: -6070},
+//   {p: 'N', x: -4265, y: -6072},
+//   {p: 'N', x: -4273, y: -6080},
+//   {p: 'H', x: -4264, y: -6082},
+//   {p: 'N', x: -4273, y: -6081},
+//   {p: 'H', x: -4270, y: -6085},
+//   {p: 'H', x: -4270, y: -6087},
+//   {p: 'N', x: -4268, y: -6084},
+//   {p: 'H', x: -4267, y: -6072},
+//   {p: 'N', x: -4265, y: -6082},
+//   {p: 'N', x: -4268, y: -6074},
+//   {p: 'H', x: -4267, y: -6078},
+//   {p: 'H', x: -4273, y: -6078},
+//   {p: 'H', x: -4264, y: -6070},
+//   {p: 'N', x: -4268, y: -6087},
+//   {p: 'N', x: -4272, y: -6076},
+// ]
+
+// // R
+// const moves10 = [
+//   {p: 'R', x: 0, y: 1},
+//   {p: 'R', x: 1, y: 1},
+//   {p: 'R', x: 0, y: 0},
+//   {p: 'R', x: 1, y: 0},
+//   {p: 'R', x: 2, y: 2},
+//   {p: 'R', x: 3, y: 3},
+//   {p: 'E', x: 0, y: 0},
+//   {p: 'E', x: 1, y: 1},
+//   {p: 'E', x: 2, y: 2},
+//   {p: 'E', x: 3, y: 3},
+// ]
+
+// // M
+// const moves11 = [
+//   {p: 'J', x: -4749, y: -6985},
+//   {p: 'J', x: -4754, y: -6989},
+//   {p: 'J', x: -4741, y: -6976},
+//   {p: 'J', x: -4750, y: -6976},
+//   {p: 'J', x: -4752, y: -6984},
+//   {p: 'M', x: -4750, y: -6986},
+//   {p: 'M', x: -4746, y: -6975},
+//   {p: 'M', x: -4753, y: -6987},
+//   {p: 'J', x: -4754, y: -6987},
+//   {p: 'J', x: -4746, y: -6976},
+//   {p: 'M', x: -4753, y: -6986},
+//   {p: 'M', x: -4748, y: -6975},
+//   {p: 'M', x: -4742, y: -6977},
+//   {p: 'J', x: -4750, y: -6983},
+//   {p: 'M', x: -4753, y: -6988},
+//   {p: 'M', x: -4745, y: -6976},
+//   {p: 'M', x: -4743, y: -6975},
+//   {p: 'M', x: -4753, y: -6989},
+//   {p: 'M', x: -4750, y: -6974},
+//   {p: 'M', x: -4747, y: -6977},
+//   {p: 'M', x: -4751, y: -6984},
+//   {p: 'M', x: -4750, y: -6985},
+//   {p: 'M', x: -4748, y: -6980},
+//   {p: 'M', x: -4745, y: -6978},
+//   {p: 'J', x: -4748, y: -6981},
+//   {p: 'J', x: -4749, y: -6977},
+//   {p: 'J', x: -4745, y: -6977},
+//   {p: 'J', x: -4744, y: -6977},
+//   {p: 'J', x: -4752, y: -6989},
+//   {p: 'M', x: -4751, y: -6976},
+//   {p: 'J', x: -4746, y: -6978},
+//   {p: 'J', x: -4751, y: -6985},
+//   {p: 'M', x: -4748, y: -6982},
+//   {p: 'M', x: -4752, y: -6988},
+//   {p: 'J', x: -4746, y: -6977},
+//   {p: 'J', x: -4754, y: -6988},
+//   {p: 'J', x: -4744, y: -6975},
+// ]
+
+// // Solution 1
+// const connectFour = moves => {
+//   const playerMovesLimit = 4
+//   const players = {}
+
+//   const M = new Set(moves.map(move => [move.x, move.y].join(move.p)))
+//   console.log(M)
+
+//   const getWinner = (movesP, currentX, currentY, action = 'x', count = 0) => {
+//     let stepX = 0
+//     let stepY = 0
+
+//     if (action === 'y') stepY = 1
+//     else stepX = 1
+//     if (action === 'diagonalIncrementY') stepY = 1
+//     else if (action === 'diagonalDecrementY') stepY = -1
+
+//     const result = movesP.find(({x, y}) => x === currentX + stepX && y === currentY + stepY)
+//     if (result) {
+//       count++
+//       if (count === playerMovesLimit - 1) return result
+//       return getWinner(movesP, currentX + stepX, currentY + stepY, action, count)
+//     }
+//   }
+
+//   for (const move of moves) {
+//     const {p, x, y} = move
+//     players[p] ? players[p].push({x, y}) : (players[p] = [{x, y}])
+
+//     if (players[p].length >= playerMovesLimit) {
+//       players[p].sort((a, b) => a.x - b.x || a.y - b.y)
+
+//       for (let i = 0; i < players[p].length - 1; i++) {
+//         if (getWinner(players[p], players[p][i].x, players[p][i].y)) return p
+//         if (getWinner(players[p], players[p][i].x, players[p][i].y, 'y')) return p
+//         if (getWinner(players[p], players[p][i].x, players[p][i].y, 'diagonalIncrementY')) return p
+//         if (getWinner(players[p], players[p][i].x, players[p][i].y, 'diagonalDecrementY')) return p
+//       }
+//     }
+//   }
+
+//   return null
+// }
+
+// // Solution 2
+// // const connectFour = moves => {
+// //   M = new Set(moves.map(move => [move.x, move.y].join(move.p)))
+// //   for (move of moves)
+// //     for ([x, y] of [
+// //       [0, 1],
+// //       [1, 0],
+// //       [1, 1],
+// //       [1, -1],
+// //     ])
+// //       if ([1, 2, 3].every(i => M.has([move.x + i * x, move.y + i * y].join(move.p)))) return move.p
+// //   return null
+// // }
+
+// console.log('R', connectFour(moves1))
+// console.log('Y', connectFour(moves2))
+// console.log('G', connectFour(moves3))
+// console.log('null', connectFour(moves4))
+// console.log('E', connectFour(moves5))
+// console.log('E', connectFour(moves6))
+// console.log('P', connectFour(moves7))
+// console.log('E', connectFour(moves8))
+// console.log('N', connectFour(moves9))
+// console.log('R', connectFour(moves10))
+// console.log('M', connectFour(moves11))

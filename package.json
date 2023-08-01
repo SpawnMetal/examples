@@ -1,0 +1,23 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "examples.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpawnMetal/examples.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SpawnMetal/examples/issues"
+  },
+  "homepage": "https://github.com/SpawnMetal/examples#readme",
+  "devDependencies": {
+    "eslint": "^8.46.0"
+  }
+}
