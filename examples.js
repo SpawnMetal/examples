@@ -1396,3 +1396,82 @@ get(
 // console.log('N', connectFour(moves9))
 // console.log('R', connectFour(moves10))
 // console.log('M', connectFour(moves11))
+
+// ===================================================== //
+// Квадрат Сатора. Каждое слово в матрице читается со всех сторон
+
+// const tablet1 = [
+//   ['T', 'E', 'N'],
+//   ['E', 'Y', 'E'],
+//   ['N', 'E', 'T'],
+// ]
+
+// const tablet2 = [
+//   ['N', 'O', 'T'],
+//   ['O', 'V', 'O'],
+//   ['N', 'O', 'T'],
+// ]
+
+// const tablet3 = [
+//   ['B', 'A', 'T', 'S'],
+//   ['A', 'B', 'U', 'T'],
+//   ['T', 'U', 'B', 'A'],
+//   ['S', 'T', 'A', 'B'],
+// ]
+
+// const tablet4 = [
+//   ['P', 'A', 'R', 'T'],
+//   ['A', 'G', 'A', 'R'],
+//   ['R', 'A', 'G', 'A'],
+//   ['T', 'R', 'A', 'M'],
+// ]
+
+// const tablet5 = [
+//   ['S', 'A', 'T', 'O', 'R'],
+//   ['A', 'R', 'E', 'P', 'O'],
+//   ['T', 'E', 'N', 'E', 'T'],
+//   ['O', 'P', 'E', 'R', 'A'],
+//   ['R', 'O', 'T', 'A', 'S'],
+// ]
+
+// const tablet6 = [
+//   ['S', 'A', 'L', 'A', 'S'],
+//   ['A', 'R', 'E', 'N', 'A'],
+//   ['L', 'E', 'V', 'E', 'L'],
+//   ['A', 'R', 'E', 'N', 'A'],
+//   ['S', 'A', 'L', 'A', 'S'],
+// ]
+
+// // Solution 1
+// function isSatorSquare(tablet) {
+//   const across = []
+//   const down = []
+//   const up = []
+//   const reverse = []
+
+//   for (let i = 0; i < tablet.length; i++) {
+//     let word = tablet[i]
+//     across.push(word.join(''))
+//     reverse.push([...word].reverse().join(''))
+//     word = []
+
+//     for (let j = 0; j < tablet.length; j++) word.push(tablet[j][i])
+
+//     down.push(word.join(''))
+//     up.push(word.reverse().join(''))
+//   }
+
+//   for (const word of across) if (!down.find(item => item === word) || !up.find(item => item === word) || !reverse.find(item => item === word)) return false
+
+//   return true
+// }
+
+// // // Solution 2
+// // const isSatorSquare = tablet => tablet.every((row, y) => row.every((v, x) => tablet[x][y] == v && tablet[row.length - x - 1][tablet.length - y - 1] == v))
+
+// console.log('true', isSatorSquare(tablet1))
+// console.log('false', isSatorSquare(tablet2))
+// console.log('true', isSatorSquare(tablet3))
+// console.log('false', isSatorSquare(tablet4))
+// console.log('true', isSatorSquare(tablet5))
+// console.log('false', isSatorSquare(tablet6))
