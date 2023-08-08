@@ -1475,3 +1475,63 @@ get(
 // console.log('false', isSatorSquare(tablet4))
 // console.log('true', isSatorSquare(tablet5))
 // console.log('false', isSatorSquare(tablet6))
+
+// ===================================================== //
+// Вывести все способы разделения списка не менее чем из двух элементов на две непустые части массива.
+// a = ["az", "toto", "picaro", "zone", "kiwi"] --> [["az", "toto picaro zone kiwi"], ["az toto", "picaro zone kiwi"], ["az toto picaro", "zone kiwi"], ["az toto picaro zone", "kiwi"]]
+
+// // Solution 1
+// function partlist(arr) {
+//   const result = []
+//   for (let i = 1; i < arr.length; i++) result.push([arr.slice(0, i).join(' '), arr.slice(i).join(' ')])
+//   return result
+// }
+
+// // // Solution 2
+// // const partlist = a => a.map((v, i) => [a.slice(0, i).join(' '), a.slice(i).join(' ')]).slice(1)
+
+// console.log(
+//   JSON.stringify(partlist(['I', 'wish', 'I', "hadn't", 'come'])) ===
+//     JSON.stringify([
+//       ['I', "wish I hadn't come"],
+//       ['I wish', "I hadn't come"],
+//       ['I wish I', "hadn't come"],
+//       ["I wish I hadn't", 'come'],
+//     ])
+// )
+// console.log(
+//   JSON.stringify(partlist(['cdIw', 'tzIy', 'xDu', 'rThG'])) ===
+//     JSON.stringify([
+//       ['cdIw', 'tzIy xDu rThG'],
+//       ['cdIw tzIy', 'xDu rThG'],
+//       ['cdIw tzIy xDu', 'rThG'],
+//     ])
+// )
+// console.log(
+//   JSON.stringify(partlist(['vJQ', 'anj', 'mQDq', 'sOZ'])) ===
+//     JSON.stringify([
+//       ['vJQ', 'anj mQDq sOZ'],
+//       ['vJQ anj', 'mQDq sOZ'],
+//       ['vJQ anj mQDq', 'sOZ'],
+//     ])
+// )
+
+// ===================================================== //
+// Вернуть continent: 'Europe', language: 'JavaScript'
+
+const countDevelopers = list => list.filter(({continent, language}) => continent === 'Europe' && language === 'JavaScript').length
+
+const list1 = [
+  {firstName: 'Noah', lastName: 'M.', country: 'Switzerland', continent: 'Europe', age: 19, language: 'JavaScript'},
+  {firstName: 'Maia', lastName: 'S.', country: 'Tahiti', continent: 'Oceania', age: 28, language: 'JavaScript'},
+  {firstName: 'Shufen', lastName: 'L.', country: 'Taiwan', continent: 'Asia', age: 35, language: 'HTML'},
+  {firstName: 'Sumayah', lastName: 'M.', country: 'Tajikistan', continent: 'Asia', age: 30, language: 'CSS'},
+]
+
+const list2 = [
+  {firstName: 'Oliver', lastName: 'Q.', country: 'Australia', continent: 'Oceania', age: 19, language: 'HTML'},
+  {firstName: 'Lukas', lastName: 'R.', country: 'Austria', continent: 'Europe', age: 89, language: 'HTML'},
+]
+
+console.log(countDevelopers(list1))
+console.log(countDevelopers(list2))
