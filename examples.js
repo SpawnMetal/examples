@@ -530,6 +530,7 @@
 // ===================================================== //
 // Кэш функции с результатом
 
+// Solution 1
 // function cache(callback) {
 //   const cached = new Map()
 
@@ -550,24 +551,36 @@
 //   }
 // }
 
+// // Solution 2
+// function cache(callback) {
+//   const cached = {}
+
+//   return function (...args) {
+//     const key = String(args)
+//     console.log()
+//     console.log(args)
+
+//     if (cached[key]) {
+//       console.log('cache')
+//       return cached[key]
+//     } else {
+//       console.log('no cache')
+//       const result = callback(...args)
+//       cached[key] = result
+//       return result
+//     }
+//   }
+// }
+
 // const add = (a, b) => a + b
 // const cachedAdd = cache(add)
-// let result
 
-// result = cachedAdd(1, 2) // no cache
-// console.log('result', result)
-// result = cachedAdd(1, 2) // cache
-// console.log('result', result)
-// result = cachedAdd(1, 2) // cache
-// console.log('result', result)
-
-// result = cachedAdd(3, 4) // no cache
-// console.log('result', result)
-// result = cachedAdd(3, 4) // cache
-// console.log('result', result)
-
-// result = cachedAdd(1, 2) // cache
-// console.log('result', result)
+// console.log(cachedAdd(1, 2)) // no cache
+// console.log(cachedAdd(1, 2)) // cache
+// console.log(cachedAdd(1, 2)) // cache
+// console.log(cachedAdd(3, 4)) // no cache
+// console.log(cachedAdd(3, 4)) // cache
+// console.log(cachedAdd(1, 2)) // cache
 
 // ===================================================== //
 // Учитывая массив, поверните массив вправо k пошагово, где k неотрицательно.
