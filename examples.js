@@ -596,7 +596,7 @@
 // console.log(nums) // [5, 6, 7, 1, 2, 3, 4]
 
 // // Solution 2
-// nums.unshift(...nums.splice(-k, k))
+// nums.unshift(...nums.splice(-k, k)) // Здесь происходит сначала модификация nums с помощью splice, а затем возвращённый [5, 6, 7] он делает spread и затем unshift
 // console.log(nums) // [5, 6, 7, 1, 2, 3, 4]
 
 // ===================================================== //
