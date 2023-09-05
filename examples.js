@@ -1002,136 +1002,108 @@ get(
 // async function getComments(pageNumber) {
 //   const pageCount = 5
 
-//   const pages = {
-//     1: {
+//   const pages = [
+//     {
+//       id: 1,
 //       pageCount,
 //       comments: [
 //         {
-//           id: '1',
+//           id: 1,
 //           text: 'page 1, comment 1',
 //         },
 //         {
-//           id: '2',
+//           id: 2,
 //           text: 'page 1, comment 2',
 //         },
 //       ],
 //     },
-//     2: {
+//     {
+//       id: 2,
 //       pageCount,
 //       comments: [
 //         {
-//           id: '3',
+//           id: 3,
 //           text: 'page 2, comment 3',
 //         },
 //       ],
 //     },
-//     3: {
+//     {
+//       id: 3,
 //       pageCount,
 //       comments: [
 //         {
-//           id: '4',
+//           id: 4,
 //           text: 'page 3, comment 4',
 //         },
 //       ],
 //     },
-//     4: {
+//     {
+//       id: 4,
 //       pageCount,
 //       comments: [
 //         {
-//           id: '5',
+//           id: 5,
 //           text: 'page 4, comment 5',
 //         },
 //         {
-//           id: '6',
+//           id: 6,
 //           text: 'page 4, comment 6',
 //         },
 //         {
-//           id: '7',
+//           id: 7,
 //           text: 'page 4, comment 7',
 //         },
 //       ],
 //     },
-//     5: {
+//     {
+//       id: 5,
 //       pageCount,
 //       comments: [
 //         {
-//           id: '8',
+//           id: 8,
 //           text: 'page 5, comment 8',
 //         },
 //       ],
 //     },
-//   }
+//   ]
 
-//   return new Promise((resolve, reject) => {
-//     resolve(pages[pageNumber])
+//   return new Promise(resolve => {
+//     resolve(pages.find(({id}) => id === pageNumber))
 //   })
 // }
 
 // async function getLikes(commentId) {
-//   const likes = {
-//     1: {like: 10, dislike: 1},
-//     2: {like: 20, dislike: 2},
-//     3: {like: 30, dislike: 3},
-//     4: {like: 40, dislike: 4},
-//     5: {like: 50, dislike: 5},
-//     6: {like: 60, dislike: 6},
-//     7: {like: 70, dislike: 7},
-//     8: {like: 80, dislike: 8},
-//   }
+//   const likes = [
+//     {id: 1, like: 10, dislike: 1},
+//     {id: 2, like: 20, dislike: 2},
+//     {id: 3, like: 30, dislike: 3},
+//     {id: 4, like: 40, dislike: 4},
+//     {id: 5, like: 50, dislike: 5},
+//     {id: 6, like: 60, dislike: 6},
+//     {id: 7, like: 70, dislike: 7},
+//     {id: 8, like: 80, dislike: 8},
+//   ]
 
-//   return new Promise((resolve, reject) => {
-//     resolve(likes[commentId])
+//   return new Promise(resolve => {
+//     resolve(likes.find(({id}) => id === commentId))
 //   })
 // }
 
 // const result = []
 
 // async function getData() {
-//   const commentsPromise = []
-//   const comment1 = await getComments(1)
-//   const pageCount = comment1.pageCount
+//   let pageNumber = 1
+//   const resultOne = await getComments(pageNumber)
+//   const {pageCount, comments} = resultOne
+//   const promisesComments = []
 
-//   const fillResult = comment => getLikes(comment.id).then(like => result.push({...comment, likes: like}))
+//   const fillResult = comment => getLikes(comment.id).then(({like, dislike}) => result.push({...comment, likes: {like, dislike}}))
 
-//   for (let page = 2; page <= pageCount; page++) commentsPromise.push(getComments(page))
-//   for (const comment of comment1.comments) fillResult(comment)
+//   for (pageNumber = 2; pageNumber <= pageCount; pageNumber++) promisesComments.push(getComments(pageNumber))
+//   for (const comment of comments) fillResult(comment)
 
-//   Promise.allSettled(commentsPromise).then(commentsPromiseSettled => {
-//     //   {
-//     //     status: 'fulfilled',
-//     //     value: {
-//     //       '1': {
-//     //         pageCount,
-//     //         comments: [
-//     //           {
-//     //             id: '1',
-//     //             text: 'page 1, comment 1',
-//     //           },
-//     //           {
-//     //             id: '2',
-//     //             text: 'page 1, comment 2',
-//     //           },
-//     //         ],
-//     //       },
-//     //     },
-//     //   },
-//     //   {
-//     //     status: 'fulfilled',
-//     //     value: {
-//     //       '2': {
-//     //         pageCount,
-//     //         comments: [
-//     //           {
-//     //             id: '3',
-//     //             text: 'page 2, comment 3',
-//     //           },
-//     //         ],
-//     //       },
-//     //     },
-//     //   },
-//     // ]
-
-//     for (const commentPromiseSettled of commentsPromiseSettled) for (const comment of commentPromiseSettled.value.comments) fillResult(comment)
+//   Promise.allSettled(promisesComments).then(resultComments => {
+//     for (const {value} of resultComments) for (const comment of value.comments) fillResult(comment)
 //   })
 // }
 
