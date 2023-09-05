@@ -617,17 +617,13 @@
 // .map
 
 // Array.prototype.myMap = function (callback) {
-//   let res = []
-
-//   for (let i of this) res.push(callback(i))
-
-//   return res
+//   let result = []
+//   for (let i of this) result.push(callback(i))
+//   return result
 // }
 
 // let arr = [2, 5, 3]
-// let res = arr.myMap(par => `Значение = ${par}`)
-
-// console.log(res)
+// console.log(arr.myMap(par => `Значение = ${par}`))
 
 // ===================================================== //
 // Рекурсивно обойти дерево и вернуть сумму веток
@@ -673,7 +669,7 @@
 // console.log(undefined + 2) // NaN
 // console.log(Boolean('0')) // true
 // console.log('0' == false) // true т. к. интерпретатор переводит '0' в число
-// console.log(false == []) // true
+// console.log(false == []) // true. [] == false тоже
 // console.log(false == {}) // false
 // if ([]) console.log('true') // true
 // else console.log('false')
@@ -909,7 +905,7 @@ get(
 ) // undefined
 */
 
-// // Solution 1
+// Solution 1
 // function get(obj, path) {
 //   const p = path.split('.')
 //   let result = obj
@@ -939,6 +935,57 @@ get(
 
 //   return template
 // }
+
+// // Solution 2
+// const getValueOfPath = (path, obj) => path.split('.').reduce((acc, value) => (acc ? acc[value] : undefined), obj)
+
+// function expand(str, obj) {
+//   let result = str
+//   const regex = /\{(.*?)\}/g
+//   const matches = str.matchAll(regex)
+
+//   for (const match of matches) {
+//     const path = match[1]
+//     const value = getValueOfPath(path, obj)
+//     result = result.replace(`{${path}}`, value)
+//   }
+
+//   return result
+// }
+
+// // Solution 3
+// const getValueOfPath = (path, obj) => path.split('.').reduce((acc, value) => (acc ? acc[value] : undefined), obj)
+
+// const getPaths = template => {
+//   const paths = []
+//   let end = 0
+
+//   while (true) {
+//     const start = template.indexOf('{', end)
+
+//     if (start === -1) break
+
+//     end = template.indexOf('}', start)
+//     paths.push(template.slice(start + 1, end))
+//   }
+
+//   return paths
+// }
+
+// function expand(template, obj) {
+//   let result = template
+//   const paths = getPaths(template)
+
+//   for (const path of paths) {
+//     const value = getValueOfPath(path, obj)
+//     if (value !== undefined) result = result.replace(`{${path}}`, value)
+//   }
+
+//   return result
+// }
+
+// console.log(expand('Hello, {user.name}!', {user: {name: 'Paul'}}))
+// console.log(expand('Hello, {user.name}! Now at {time}', {user: {name: 'Paul'}, time: '15:00'}))
 
 // ===================================================== //
 /**
@@ -1575,3 +1622,5 @@ get(
 
 // const result = countLanguages(list1)
 // console.log(result, JSON.stringify(result) === JSON.stringify({C: 2, JavaScript: 1, Ruby: 1}))
+
+// ===================================================== //
