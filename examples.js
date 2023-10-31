@@ -1,3 +1,5 @@
+// import testClass from './observer.js'
+
 // ===================================================== //
 // Замыкание
 
@@ -1596,3 +1598,131 @@ get(
 // console.log(result, JSON.stringify(result) === JSON.stringify({C: 2, JavaScript: 1, Ruby: 1}))
 
 // ===================================================== //
+// Задача не ясна
+
+// const delay = msec => new Promise(resolve => setTimeout(resolve, msec))
+
+// async function countUp (n = 0) {
+//   for (let i = 0; i < 5; i++) {
+//     console.log(n + i)
+//     await delay(100)
+//   }
+// }
+
+// const throttledCountUp = asyncThrottle(countUp)
+
+// throttledCountUp(0) // run
+// throttledCountUp(10) // skip this
+// await throttledCountUp(20) // skip this, but wait for "throttledCountUp(0)" to finish
+
+// throttledCountUp(30) // run this
+
+// async function asyncThrottle(countUp) {
+//     let p;
+//     return function (...args) {
+//         if (p) {
+//             return p
+//         }
+
+//         p = countUp(...args)
+//     }
+// }
+
+// ===================================================== //
+// Даны два отсортированных списка с интервалами присутствия пользователей в онлайне в течение дня. Начало интервала строго меньше конца. Нужно вычислить интервалы, когда оба пользователя были в онлайне.
+
+// const result1 = intersection(
+//   [
+//     [8, 12],
+//     [17, 22],
+//   ],
+//   [
+//     [5, 11],
+//     [14, 18],
+//     [20, 23],
+//   ]
+// ) // [[8, 11], [17, 18], [20, 22]]
+
+// const result2 = intersection(
+//   [
+//     [9, 15],
+//     [18, 21],
+//   ],
+//   [
+//     [10, 14],
+//     [21, 22],
+//   ]
+// ) // [[10, 14]]
+
+// function intersection(list1, list2) {
+//   const result = []
+//   let i = 0
+//   let j = 0
+
+//   while (i < list1.length && j < list2.length) {
+//     const interval1 = list1[i]
+//     const interval2 = list2[j]
+
+//     if (interval1[0] <= interval2[1] && interval2[0] < interval1[1]) {
+//       const start = Math.max(interval1[0], interval2[0])
+//       const end = Math.min(interval1[1], interval2[1])
+
+//       result.push([start, end])
+//     }
+
+//     if (interval1[1] < interval2[1]) i++
+//     else if (interval2[1] < interval1[1]) j++
+//     else {
+//       i++
+//       j++
+//     }
+//   }
+
+//   return result
+// }
+
+// console.log('result1', result1)
+// console.log('result2', result2)
+
+// ===================================================== //
+// Proxy
+
+// testClass.count = 5
+// testClass.updateCount(5)
+// testClass.updateMessages()
+// testClass.messages[0] = 2
+// console.log(testClass.messages)
+// testClass.updateMessages()
+// console.log(testClass.messages)
+// testClass.messages.length
+
+// ===================================================== //
+// Серверное получение даты
+
+// function getDate(value?: Date | number) {
+//   let date = value ?? new Date()
+//   date = typeof date === 'number' ? new Date(value) : date
+//   return new Date(date + 'UTC') // Текущее время и фикс получения времени
+// }
+
+// ===================================================== //
+// Клиентское получение даты
+
+// function getDateWithoutTimezone(value?: Date | number | string) {
+//   let date = value ?? new Date()
+//   date = typeof date !== 'object' ? new Date(value) : date
+//   const timezoneOffsetHours = date.getTimezoneOffset() / 60
+//   return new Date(date.setHours(date.getHours() + timezoneOffsetHours))
+// }
+
+// function getDate(value?: Date | string) {
+//   let format = new Intl.DateTimeFormat('ru', {
+//     year: 'numeric',
+//     month: 'numeric',
+//     day: 'numeric',
+//     hour: '2-digit',
+//     minute: '2-digit',
+//   })
+
+//   return format.format(getDateWithoutTimezone(value))
+// }

@@ -19,5 +19,6 @@
   "homepage": "https://github.com/SpawnMetal/examples#readme",
   "devDependencies": {
     "eslint": "^8.46.0"
-  }
+  },
+  "type": "module"
 }
