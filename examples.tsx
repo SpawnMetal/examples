@@ -89,23 +89,14 @@
 // ===================================================== //
 // Typescript Generic
 
-// interface X {
-//     [key: string]: number
+// function getProperty<Type, Key extends keyof Type>(obj: Type, key: Key) {
+//   return obj[key]
 // }
 
-// const x: X = {
-//     a: 1,
-//     b: 2,
-//     c: 3,
-//     d: 4
-// }
-
-// function getProperty<T extends typeof x, K extends keyof typeof x>(obj: T, key: K): T[K] {
-//     return obj[key]
-// }
+// let x = {a: 1, b: 2, c: 3, d: 4}
 
 // getProperty(x, 'a') // 1
-// getProperty(x, 'm') // error
+// getProperty(x, 'm') // error: Argument of type '"m"' is not assignable to parameter of type '"a" | "b" | "c" | "d"'.
 
 // ===================================================== //
 /**
