@@ -1726,3 +1726,20 @@ get(
 
 //   return format.format(getDateWithoutTimezone(value))
 // }
+
+// ===================================================== //
+// Порядок инициализации https://www.typescriptlang.org/docs/handbook/2/classes.html#initialization-order
+
+class Base {
+  name = 'base'
+  constructor() {
+    console.log('My name is ' + this.name)
+  }
+}
+
+class Derived extends Base {
+  name = 'derived'
+}
+
+const d = new Derived() // Prints "base", not "derived"
+console.log(d.name)
