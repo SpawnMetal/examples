@@ -223,14 +223,45 @@ const person = {
 }
 
 const foo = person.f
-foo() // this = root
-f() // this = root
+foo() // this = undefined в strict иначе root
+f() // this = undefined в strict иначе root
 f.call(person) // this = person
 person.f() // this = person
 person.f3()() // this = person
-f2() // this = {}
-f2.call(person) // this = {}
-person.f2() // this = {}
-person.f4() // this = {}
+f2() // this = undefined в strict иначе {}
+f2.call(person) // this = undefined в strict иначе {}
+person.f2() // this = undefined в strict иначе {}
+person.f4() // this = undefined в strict иначе {}
 person.delayLog() // Elena 20
+
+const userService = {
+  currentFilter: 'active',
+  users: [
+    {name: 'Alex', status: 'active'},
+    {name: 'Nick', status: 'deleted'},
+  ],
+  getFilteredUsers: function () {
+    return this.users.filter(function (user) {
+      return user.status === this?.currentFilter
+    })
+  },
+  // Solution 1
+  getFilteredUsers2: function () {
+    return this.users.filter(
+      function (user) {
+        return user.status === this.currentFilter
+      }.bind(this)
+    )
+  },
+  // Solution 2
+  getFilteredUsers3: function () {
+    return this.users.filter(user => {
+      return user.status === this.currentFilter
+    })
+  },
+}
+
+console.log(userService.getFilteredUsers()) // []
+console.log(userService.getFilteredUsers2()) // [ { name: 'Alex', status: 'active' } ]
+console.log(userService.getFilteredUsers3()) // [ { name: 'Alex', status: 'active' } ]
 //#endregion ContextNewExample

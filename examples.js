@@ -423,38 +423,6 @@
 // start()
 
 // ===================================================== //
-// useCallback
-
-// const LiveSearch = () => {
-// const [val, setVal] = useState('');
-// const [response, setResponse] = useState('');
-
-// function search (query){
-//     fetch(`https://jsonplaceholder.typicode.com/todos?query=${query}`)
-//         .then(response => response.json())
-//         .then(json => setResponse(json))
-// }
-
-// const onChange = (e) => {
-//     setVal(e.target.value)
-//     search(val)
-// }
-
-// const onReccomendationClick = useCallback(() => {
-//     console.log(title)
-// },
-// [title],
-// )
-
-// return(
-//     <div>
-//         <input value={val} onChange={onChange} type="text"/>
-//         <Reccomendations onClick={onReccomendationClick} response={response} />
-//     </div>
-// )
-// }
-
-// ===================================================== //
 // Являются ли все символы в строке уникальными
 
 // function isUnique(string) {
@@ -620,7 +588,7 @@
 
 // Array.prototype.myMap = function (callback) {
 //   let result = []
-//   for (let i of this) result.push(callback(i))
+//   for (const value of this) result.push(callback(value))
 //   return result
 // }
 
@@ -1730,16 +1698,66 @@ get(
 // ===================================================== //
 // Порядок инициализации https://www.typescriptlang.org/docs/handbook/2/classes.html#initialization-order
 
-class Base {
-  name = 'base'
-  constructor() {
-    console.log('My name is ' + this.name)
-  }
-}
+// class Base {
+//   name = 'base'
+//   constructor() {
+//     console.log('My name is ' + this.name)
+//   }
+// }
 
-class Derived extends Base {
-  name = 'derived'
-}
+// class Derived extends Base {
+//   name = 'derived'
+// }
 
-const d = new Derived() // Prints "base", not "derived"
-console.log(d.name)
+// const d = new Derived() // Prints "base", not "derived"
+// console.log(d.name)
+
+// ===================================================== //
+// Реализуйте класс emitter для подписывания на события, отписывания и вызов их
+
+// class EventEmitter {
+//   list = {}
+
+//   on(key, callback) {
+//     if (this.list[key]) this.list[key].add(callback)
+//     else this.list[key] = new Set([callback])
+
+//     return this
+//   }
+
+//   emit(key) {
+//     for (const callback of this.list[key])
+//       try {
+//         callback()
+//       } catch (error) {
+//         console.log(error)
+//       }
+
+//     return this
+//   }
+
+//   off(key, callback) {
+//     this.list[key].delete(callback)
+
+//     return this
+//   }
+// }
+
+// const emitter = new EventEmitter()
+
+// const cb1 = () => console.log('cb1')
+// const cb2 = () => console.log('cb2')
+
+// emitter
+//   .on('event', cb1) // подписка коллбэка cb1 на событие 'event'
+//   .on('event', cb2)
+//   .emit('event') // срабатывание события 'event'
+//   // 'cb1'
+//   // 'cb2'
+//   .off('event', cb2) // отписка коллбэка cb2 от события 'event'
+//   .emit('event')
+// // 'cb1'
+
+// ===================================================== //
+const log = text => console.log(text)
+Promise.resolve(3).then(log) // m1

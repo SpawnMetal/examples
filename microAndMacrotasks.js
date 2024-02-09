@@ -228,28 +228,75 @@
 
 ////////////////////////////////////////////////
 
-async function a1() {
-  return 1
-}
-async function a2() {
-  return 2
-}
-async function a3() {
-  return 3
-}
+// async function a1() {
+//   return 1
+// }
+// async function a2() {
+//   return 2
+// }
+// async function a3() {
+//   return 3
+// }
 
-async function res() {
-  let result
-  result = await Promise.all([a1(), a2(), a3()])
-  console.log(result) // [ 1, 2, 3 ]
+// async function res() {
+//   let result
+//   result = await Promise.all([a1(), a2(), a3()])
+//   console.log(result) // [ 1, 2, 3 ]
 
-  result = await Promise.allSettled([a1(), a2(), a3()])
-  console.log(result)
-  // [
-  //   { status: 'fulfilled', value: 1 },
-  //   { status: 'fulfilled', value: 2 },
-  //   { status: 'fulfilled', value: 3 }
-  // ]
-}
+//   result = await Promise.allSettled([a1(), a2(), a3()])
+//   console.log(result)
+//   // [
+//   //   { status: 'fulfilled', value: 1 },
+//   //   { status: 'fulfilled', value: 2 },
+//   //   { status: 'fulfilled', value: 3 }
+//   // ]
+// }
 
-res()
+// res()
+
+// ===================================================== //
+// console.log(1) // 1
+
+// setTimeout(function () {
+//   console.log(2) // M1
+// })
+
+// Promise.resolve(3).then(res => console.log(res)) // m1
+
+// console.log(4) // 2
+
+// setTimeout(function () {
+//   console.log(5) // M2
+// }, 0)
+
+// console.log(6) // 3
+
+// const foo1 = () => {
+//   console.log('foo1')
+
+//   return Promise.resolve().then(foo1)
+// }
+
+// foo1() // вызов foo1, объявленной выше
+
+// /*
+//   Напишите порядок вывода чисел:
+//   // Решение 1
+//   1
+//   4
+//   6
+//   3
+//   2
+//   5
+
+//   // Решение 2
+//   1
+//   4
+//   6
+//   foo1
+//   3
+//   foo1
+//   foo1...
+//  */
+
+// ===================================================== //

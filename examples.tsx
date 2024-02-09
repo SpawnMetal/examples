@@ -281,59 +281,59 @@
 // ===================================================== //
 // Жизненный цикл
 
-export const Child = ({num}) => {
-  console.log('child: render')
+// export const Child = ({num}) => {
+//   console.log('child: render')
 
-  useLayoutEffect(() => {
-    console.log('child: layout effect')
+//   useLayoutEffect(() => {
+//     console.log('child: layout effect')
 
-    return () => {
-      console.log('child: cleanup layout effect')
-    }
-  }, [num])
+//     return () => {
+//       console.log('child: cleanup layout effect')
+//     }
+//   }, [num])
 
-  useEffect(() => {
-    console.log('child: effect')
-    return () => {
-      console.log('child: cleanup effect')
-    }
-  }, [num])
+//   useEffect(() => {
+//     console.log('child: effect')
+//     return () => {
+//       console.log('child: cleanup effect')
+//     }
+//   }, [num])
 
-  return null
-}
+//   return null
+// }
 
-export const App = () => {
-  const [num, setNum] = useState(0)
+// export const App = () => {
+//   const [num, setNum] = useState(0)
 
-  console.log('parent: render')
+//   console.log('parent: render')
 
-  function clickHandler() {
-    setNum(prev => prev + 1)
-  }
+//   function clickHandler() {
+//     setNum(prev => prev + 1)
+//   }
 
-  useLayoutEffect(() => {
-    console.log('parent: layout effect')
+//   useLayoutEffect(() => {
+//     console.log('parent: layout effect')
 
-    return () => {
-      console.log('parent: cleanup layout effect')
-    }
-  }, [num])
+//     return () => {
+//       console.log('parent: cleanup layout effect')
+//     }
+//   }, [num])
 
-  useEffect(() => {
-    console.log('parent: effect')
-    return () => {
-      console.log('parent: cleanup effect')
-    }
-  }, [num])
+//   useEffect(() => {
+//     console.log('parent: effect')
+//     return () => {
+//       console.log('parent: cleanup effect')
+//     }
+//   }, [num])
 
-  return (
-    <>
-      <Child num={num} />
-      <button onClick={clickHandler}>render</button>
-      <div style={{fontSize: '45px', textAlign: 'center'}}>{num}</div>
-    </>
-  )
-}
+//   return (
+//     <>
+//       <Child num={num} />
+//       <button onClick={clickHandler}>render</button>
+//       <div style={{fontSize: '45px', textAlign: 'center'}}>{num}</div>
+//     </>
+//   )
+// }
 
 // parent: render
 // develop // parent: render
@@ -347,3 +347,37 @@ export const App = () => {
 // parent: cleanup effect
 // child: effect
 // parent: effect
+
+// ===================================================== //
+// useCallback
+
+// const LiveSearch = () => {
+// const [val, setVal] = useState('');
+// const [response, setResponse] = useState('');
+
+// function search (query){
+//     fetch(`https://jsonplaceholder.typicode.com/todos?query=${query}`)
+//         .then(response => response.json())
+//         .then(json => setResponse(json))
+// }
+
+// const onChange = (e) => {
+//     setVal(e.target.value)
+//     search(val)
+// }
+
+// const onReccomendationClick = useCallback(() => {
+//     console.log(title)
+// },
+// [title],
+// )
+
+// return(
+//     <div>
+//         <input value={val} onChange={onChange} type="text"/>
+//         <Reccomendations onClick={onReccomendationClick} response={response} />
+//     </div>
+// )
+// }
+
+// ===================================================== //
