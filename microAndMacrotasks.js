@@ -300,3 +300,59 @@
 //  */
 
 // ===================================================== //
+async function main() {
+  const somePromise = new Promise((resolve, reject) => {
+    console.log('Promise') // 1
+    setTimeout(() => {
+      resolve(1)
+    })
+  })
+
+  console.log('Script starting...') // 2
+
+  setTimeout(() => {
+    console.log('Some timer...') // M1
+  })
+
+  somePromise
+    .then(value => {
+      console.log(`then: ${value}`) // 4 из-за await
+    })
+    .finally(async () => {
+      console.log(`finally`) // m1
+      throw 3
+    })
+    .catch(value => {
+      console.log(`catch: ${value}`) // m2
+      throw value + 1
+    })
+    .catch(value => {
+      console.log(`another catch: ${value}`) // m3
+    })
+    .catch(value => {
+      console.log(`one more catch: ${value}`) // skip
+    })
+    .finally(async () => {
+      console.log(`another finally`) // m4
+    })
+
+  console.log('Await loading...') // 3
+  const awaitResult = await somePromise
+  console.log(`Await loaded: ${awaitResult}`) // 5
+
+  console.log('Script finishing...') // 6
+}
+
+main()
+
+// Promise
+// Script starting...
+// Await loading...
+// then: 1
+// Await loaded: 1
+// Script finishing...
+// finally
+// catch: 3
+// another catch: 4
+// another finally
+// Some timer...
