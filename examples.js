@@ -190,7 +190,18 @@
 
 // ===================================================== //
 // Потеря контекста
+// Вследствие использования function в setTimeout, у которой свой контекст
 
+// const obj = {
+//   a: 40,
+//   say: function () {
+//     setTimeout(function () {
+//       console.log(this.a)
+//     })
+//   },
+// }
+
+// // Solution 1
 // const obj = {
 //   a: 40,
 //   say: function () {
@@ -199,6 +210,16 @@
 //         console.log(this.a)
 //       }.bind(this)
 //     )
+//   },
+// }
+
+// // Solution 2
+// const obj = {
+//   a: 40,
+//   say: function () {
+//     setTimeout(() => {
+//       console.log(this.a)
+//     })
 //   },
 // }
 
@@ -321,6 +342,7 @@
 // }
 
 // console.log(+sum(1)(2)) // 3
+// console.log(sum(1)(2).toString()) // 3
 // console.log(+sum(5)(-1)(2)) // 6
 // console.log(+sum(6)(-1)(-2)(-3)) // 0
 
@@ -367,12 +389,14 @@
 // const findUnique = function () {
 //   const result = []
 //   for (const value of this) {
-//     filter = this.filter(par => par === value)
+//     const filter = this.filter(par => par === value)
 //     if (filter.length === 1) result.push(value)
 //   }
 
 //   return result
 // }
+
+// Array.prototype.findUnique = findUnique
 
 // // Solution 2
 // const findUnique = function () {
@@ -383,6 +407,8 @@
 
 //   return result
 // }
+
+// Array.prototype.findUnique = findUnique
 
 // // Solution 3
 // Array.prototype.findUnique = function () {
@@ -395,7 +421,7 @@
 //   return result
 // }
 
-// Array.prototype.findUnique = findUnique
+// // Данные
 // const result = [10, 5, 6, 10, 6, 7, 2].findUnique() // 5 7 2
 // console.log(result)
 
@@ -1759,5 +1785,5 @@ get(
 // // 'cb1'
 
 // ===================================================== //
-const log = text => console.log(text)
-Promise.resolve(3).then(log) // m1
+// const log = text => console.log(text)
+// Promise.resolve(3).then(log) // m1
