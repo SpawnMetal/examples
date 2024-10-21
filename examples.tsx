@@ -335,10 +335,29 @@
 //   )
 // }
 
+// При рендере:
 // parent: render
-// develop // parent: render
+// developer // parent: render
 // child: render
-// develop // child: render
+// developer // child: render
+// child: layout effect
+// parent: layout effect
+// child: effect
+// parent: effect
+// developer // child: cleanup layout effect
+// developer // parent: cleanup layout effect
+// developer // child: cleanup effect
+// developer // parent: cleanup effect
+// developer // child: layout effect
+// developer // parent: layout effect
+// developer // child: effect
+// developer // parent: effect
+
+// После нажатия на кнопку:
+// parent: render
+// developer // parent: render
+// child: render
+// developer // child: render
 // child: cleanup layout effect
 // parent: cleanup layout effect
 // child: layout effect
