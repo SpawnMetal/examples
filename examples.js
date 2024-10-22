@@ -75,24 +75,24 @@
 // ===================================================== //
 // setTimeout
 
-// i === 5
+// // i === 5
 // for (var i = 0; i < 5; i++)
 //   setTimeout(function () {
 //     console.log('var i =', i)
-//   }, 0)
+//   })
 
-// Способ 1 let
+// // Способ 1 let
 // for (let i = 0; i < 5; i++)
 //   setTimeout(function () {
 //     console.log('let i =', i)
-//   }, 0)
+//   })
 
-// Способ 2 IIFE
+// // Способ 2 IIFE
 // for (var i = 0; i < 5; i++)
 //   (function (i) {
 //     setTimeout(function () {
 //       console.log('var iife i =', i)
-//     }, 0)
+//     })
 //   })(i)
 
 // // Способ 3 bind
@@ -100,8 +100,15 @@
 //   setTimeout(
 //     function (i) {
 //       console.log('var i =', i)
-//     }.bind(undefined, i),
-//     0
+//     }.bind(undefined, i)
+//   )
+
+// // Способ 4 bind this
+// for (var i = 0; i < 5; i++)
+//   setTimeout(
+//     function () {
+//       console.log('var i =', this)
+//     }.bind(i)
 //   )
 
 // ===================================================== //
