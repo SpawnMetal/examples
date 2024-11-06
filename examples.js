@@ -111,6 +111,9 @@
 //     }.bind(i)
 //   )
 
+// // Способ 5 IIFE bind log
+// for (var i = 0; i < 5; i++) (j => setTimeout(console.log.bind(undefined, `var iife j = ${j}`)))(i)
+
 // ===================================================== //
 // Прототипы
 
@@ -607,14 +610,16 @@
 
 // const nums = [1, 2, 3, 1]
 
-// // Sort nums
-// nums.sort((a, b) => a - b)
-
 // // Solution 1
+// nums.sort((a, b) => a - b)
 // console.log(String(nums) !== String([...new Set(nums)]))
 
 // // Solution 2
+// nums.sort((a, b) => a - b)
 // console.log(nums.some((value, index) => nums.indexOf(value) !== index))
+
+// // Solution 3
+// console.log(new Set(nums).size !== nums.length)
 
 // ===================================================== //
 // .map
