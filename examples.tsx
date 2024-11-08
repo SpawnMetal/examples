@@ -400,3 +400,54 @@
 // }
 
 // ===================================================== //
+// Scroll
+
+import React, {useState, useEffect} from 'react'
+
+// Имитация запроса к серверу
+const fetchCall = () => Promise.resolve(Math.random())
+
+const NumberAndScroll = () => {
+  const [number, setNumber] = useState(0)
+  const [scroll, setScroll] = useState(window.scrollY)
+
+  useEffect(() => {
+    let timer = null
+
+    fetchCall().then(value => setNumber(value))
+
+    const setScrl = () => {
+      clearTimeout(timer)
+
+      timer = setTimeout(() => {
+        setScroll(window.scrollY)
+      }, 500)
+    }
+
+    window.addEventListener('scroll', setScrl)
+
+    return () => window.removeEventListener('scroll', setScrl)
+  }, [])
+
+  return (
+    <div style={{position: 'fixed'}}>
+      <div> Number: {number} </div>
+      <div> ScrollY: {scroll} </div>
+    </div>
+  )
+}
+
+export default function App() {
+  return (
+    <>
+      <NumberAndScroll />
+      {Array(100)
+        .fill()
+        .map((_, index) => (
+          <div key={index} style={{height: '100px'}}>
+            1
+          </div>
+        ))}
+    </>
+  )
+}
