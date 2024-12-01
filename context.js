@@ -178,7 +178,7 @@
 ////askPassword(user.login.bind(user, true), user.login.bind(user, false)); // ?
 //#endregion Examples
 
-// //#region ExamplesNew
+// ===================================================== //
 // const obj = {
 //   par: 1,
 //   fun: function () {
@@ -197,71 +197,129 @@
 // console.log(obj.fun())
 // console.log(objFun())
 // console.log(obj.obj1.fun())
-// //#endregion ExamplesNew
 
-//#region ContextNewExample
-function f() {
-  console.log('f', this)
-}
+// ===================================================== //
+// let baz = 0
 
-const f2 = () => console.log('f2', this)
+// let foo = {
+//   bar1: function () {
+//     return this?.baz
+//   },
+//   bar2: () => this?.baz,
+//   baz: 1,
+// }
 
-const person = {
-  name: 'Elena',
-  age: 20,
-  f,
-  f2,
-  f3: function () {
-    return () => console.log('f3', this)
-  },
-  f4: () => console.log('f4', this),
-  delayLog: function () {
-    setTimeout(() => {
-      console.log('setTimeout', this.name + ' ' + this.age)
-    }, 500)
-  },
-}
+// let fooCopy = {
+//   bar1: foo.bar1,
+//   bar2: foo.bar2,
+//   baz: 2,
+// }
 
-const foo = person.f
-foo() // this = undefined в strict иначе root
-f() // this = undefined в strict иначе root
-f.call(person) // this = person
-person.f() // this = person
-person.f3()() // this = person
-f2() // this = undefined в strict иначе {}
-f2.call(person) // this = undefined в strict иначе {}
-person.f2() // this = undefined в strict иначе {}
-person.f4() // this = undefined в strict иначе {}
-person.delayLog() // Elena 20
+// let bazzzz = foo.bar1
 
-const userService = {
-  currentFilter: 'active',
-  users: [
-    {name: 'Alex', status: 'active'},
-    {name: 'Nick', status: 'deleted'},
-  ],
-  getFilteredUsers: function () {
-    return this.users.filter(function (user) {
-      return user.status === this?.currentFilter
-    })
-  },
-  // Solution 1
-  getFilteredUsers2: function () {
-    return this.users.filter(
-      function (user) {
-        return user.status === this.currentFilter
-      }.bind(this)
-    )
-  },
-  // Solution 2
-  getFilteredUsers3: function () {
-    return this.users.filter(user => {
-      return user.status === this.currentFilter
-    })
-  },
-}
+// console.log(fooCopy.bar1()) // 2
+// console.log(fooCopy.bar2()) // undefined
+// console.log(bazzzz()) // undefined
 
-console.log(userService.getFilteredUsers()) // []
-console.log(userService.getFilteredUsers2()) // [ { name: 'Alex', status: 'active' } ]
-console.log(userService.getFilteredUsers3()) // [ { name: 'Alex', status: 'active' } ]
-//#endregion ContextNewExample
+// ===================================================== //
+// function f() {
+//   console.log('f', this)
+// }
+
+// const f2 = () => console.log('f2', this)
+
+// const person = {
+//   name: 'Elena',
+//   age: 20,
+//   f,
+//   f2,
+//   f3: function () {
+//     return () => console.log('f3', this)
+//   },
+//   f4: () => console.log('f4', this),
+//   delayLog: function () {
+//     setTimeout(() => {
+//       console.log('setTimeout', this.name + ' ' + this.age)
+//     }, 500)
+//   },
+// }
+
+// const foo = person.f
+// foo() // this = undefined в strict иначе root
+// f() // this = undefined в strict иначе root
+// f.call(person) // this = person
+// person.f() // this = person
+// person.f3()() // this = person
+// f2() // this = undefined в strict иначе {}
+// f2.call(person) // this = undefined в strict иначе {}
+// person.f2() // this = undefined в strict иначе {}
+// person.f4() // this = undefined в strict иначе {}
+// person.delayLog() // Elena 20
+
+// const userService = {
+//   currentFilter: 'active',
+//   users: [
+//     {name: 'Alex', status: 'active'},
+//     {name: 'Nick', status: 'deleted'},
+//   ],
+//   getFilteredUsers: function () {
+//     return this.users.filter(function (user) {
+//       return user.status === this?.currentFilter
+//     })
+//   },
+//   // Solution 1
+//   getFilteredUsers2: function () {
+//     return this.users.filter(
+//       function (user) {
+//         return user.status === this.currentFilter
+//       }.bind(this)
+//     )
+//   },
+//   // Solution 2
+//   getFilteredUsers3: function () {
+//     return this.users.filter(user => {
+//       return user.status === this.currentFilter
+//     })
+//   },
+// }
+
+// console.log(userService.getFilteredUsers()) // []
+// console.log(userService.getFilteredUsers2()) // [ { name: 'Alex', status: 'active' } ]
+// console.log(userService.getFilteredUsers3()) // [ { name: 'Alex', status: 'active' } ]
+
+// ===================================================== //
+// function foo() {
+//   const x = 10
+
+//   return {
+//     x: 20,
+//     bar: () => {
+//       console.log(this?.x)
+//     },
+//     baz: function () {
+//       console.log(this?.x)
+//     },
+//   }
+// }
+
+// // Функция вызывается без передачи контекста, значит это Глобальная Область, в строгом режиме она = undefined
+// const obj1 = foo() // ГО.this = undefined
+// // Стрелочная функция не имеет контекст, а foo вызвана без него, поэтому в стрелочной функции this = foo.this = ГО.this = undefined
+// obj1.bar() // ГО.this = undefined
+// // Функция вызвана с контекстом obj, значит this = obj
+// obj1.baz() // obj1.this.x = 20
+
+// // foo была вызвана с this = {x: 30}
+// const obj2 = foo.call({x: 30}) // foo.this = {x: 30}
+
+// // Стрелочная функция не имеет контекст, а foo вызвана с контекстом, поэтому в стрелочной функции this = foo.this = {x: 30}
+// obj2.bar() // foo.this.x = 30
+// // Функция была вызвана с контекстом obj2, значит this = obj2
+// obj2.baz() // obj2.this.x = 20
+
+// let y = obj2.bar
+// let z = obj2.baz
+// // Стрелочная функция не имеет контекст, а foo вызвана с контекстом, поэтому в стрелочной функции this = foo.this = {x: 30}
+// y() // foo.this.x = 30
+// // Функция была вызвана с контекстом из ГО, так как у function есть контекст и он должен быть чётко обозначен
+// z() // ГО.this = undefined

@@ -1799,3 +1799,46 @@ get(
 // ===================================================== //
 // const log = text => console.log(text)
 // Promise.resolve(3).then(log) // m1
+
+// ===================================================== //
+// swap
+
+// let obj1 = {
+//   name: '111',
+//   age: 10,
+// }
+
+// let obj2 = {
+//   name: '222',
+//   age: 20,
+// }
+
+// function swap(obj1, obj2) {
+//   ;[obj1, obj2] = [obj2, obj1]
+//   obj1.age = 30
+// }
+
+// swap(obj1, obj2)
+
+// console.log('obj1', obj1) // {name: '111' , age 10}
+// console.log('obj2', obj2) // {name: '222' , age 30}
+
+// ===================================================== //
+// Очистка ссылки на объект
+
+// let obj = {a: 1}
+// let array = [obj]
+// obj = null
+// console.log(obj) // null
+// console.log(array) // [{a: 1}]
+
+// ===================================================== //
+// Временная мёртвая зона (Temporal Dead Zone, TDZ)
+
+// let x = 5
+// ;(function () {
+//   console.log(x) // ReferenceError: Cannot access 'x' before initialization
+//   let x = 0 // Если закомментировать эту строку, то x = 5, будет получен из родительского scope
+// })()
+
+// ===================================================== //
