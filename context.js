@@ -323,3 +323,71 @@
 // y() // foo.this.x = 30
 // // Функция была вызвана с контекстом из ГО, так как у function есть контекст и он должен быть чётко обозначен
 // z() // ГО.this = undefined
+
+// ===================================================== //
+// Замыкание контекста
+
+// const obj = {
+//   number: 10,
+//   display: function () {
+//     return () => {
+//       console.log(this?.number)
+//     }
+//   },
+// }
+// const func = obj.display()
+// func() // 10. Т. к. display была вызвана с контекстом, а стрелочная функция его не имеет, то она берёт родительский контекст. Если бы return был function, то контекст был бы утерян
+
+// ===================================================== //
+// Замыкание контекста
+
+// const obj = {
+//   value: 'orange',
+//   getValue() {
+//     return () => this.value
+//   },
+// }
+
+// const func = obj.getValue()
+// console.log(func()) // orange
+
+// ===================================================== //
+/* Потеря контекста через callback
+Это равносильно следующему коду:
+function foo(callback) {
+  callback() // На этом этапе контекст был утерян
+}
+*/
+
+// const obj = {
+//   name: 'Ivy',
+//   logName() {
+//     console.log(this?.name)
+//   },
+// }
+
+// setTimeout(obj.logName, 1000) // undefined
+
+// ===================================================== //
+// Наследование контекста
+
+// class Animal {
+//   constructor(name) {
+//     this.name = name
+//   }
+//   speak() {
+//     console.log(`${this.name} makes a noise.`)
+//   }
+// }
+
+// class Dog extends Animal {
+//   speak() {
+//     super.speak()
+//     console.log(`${this.name} barks.`)
+//   }
+// }
+
+// const dog = new Dog('Buddy')
+// dog.speak()
+// // Buddy makes a noise.
+// // Buddy barks.
