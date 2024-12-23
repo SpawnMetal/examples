@@ -1842,3 +1842,28 @@ get(
 // })()
 
 // ===================================================== //
+// Сжатие строки
+
+// function archivate(str = '') {
+//   if (typeof str !== 'string') return ''
+//   if (str.length < 2) return str
+
+//   let result = ''
+//   let count = 1
+
+//   for (let i = 0; i < str.length; i++) {
+//     if (str[i] === str[i + 1]) count++
+//     else {
+//       result += str[i]
+//       if (count > 1) result += count
+//       count = 1
+//     }
+//   }
+
+//   return result
+// }
+
+// // Пример использования
+// const inputString = 'AVVVBBBVVXDHJFFFFDDDDDDHAAAAJJJDDSLSSSDDDD'
+// const compressed = archivate(inputString)
+// console.log(compressed) // Вывод: 'AV3B3V2XDHJF4D6HA4J3D2SLS3D4'

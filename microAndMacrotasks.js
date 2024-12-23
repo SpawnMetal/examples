@@ -356,3 +356,44 @@ main()
 // another catch: 4
 // another finally
 // Some timer...
+
+// ===================================================== //
+// function task1(callback) {
+//   return new Promise(resolve => {
+//     console.log('task1 start') // 1
+//     setTimeout(() => {
+//       console.log('task1 done') // 2
+//       resolve() // -
+//       callback()
+//     }, 3000)
+//   })
+// }
+
+// function task2(callback) {
+//   callback()
+//   return new Promise(resolve => {
+//     console.log('task2 start') // 5
+//     setTimeout(() => {
+//       console.log('task2 done') // 6
+//       resolve()
+//     }, 2000)
+//   })
+// }
+// function task3() {
+//   console.log('task3 start') // 3
+//   console.log('task3 done') // 4
+// }
+
+// async function runTasks() {
+//   await task1(async () => {
+//     await task2(task3)
+//   })
+// }
+// runTasks()
+
+// task1 start
+// task1 done
+// task3 start
+// task3 done
+// task2 start
+// task2 done
