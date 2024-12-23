@@ -245,11 +245,13 @@
 // }
 
 // const foo = person.f
+// const f3 = person.f3()
 // foo() // this = undefined в strict иначе root
 // f() // this = undefined в strict иначе root
 // f.call(person) // this = person
 // person.f() // this = person
-// person.f3()() // this = person
+// person.f3()() // this = person // Замыкание контекста
+// f3() // this = person // Замыкание контекста
 // f2() // this = undefined в strict иначе {}
 // f2.call(person) // this = undefined в strict иначе {}
 // person.f2() // this = undefined в strict иначе {}
@@ -433,3 +435,5 @@ function foo(callback) {
 // bar foo
 // bar bar
 // foo bar
+
+// ===================================================== //
