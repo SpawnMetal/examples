@@ -671,8 +671,8 @@
 // console.log(Boolean([])) // true
 // console.log(Boolean(function () {})) // true
 // console.log(Number('')) // 0
-// console.log(4 + 10 + 'px') // number
-// console.log('px' + 4 + 10) // string
+// console.log(4 + 10 + 'px') // 14px
+// console.log('px' + 4 + 10) // px410
 // console.log(null + 2) // 2
 // console.log(undefined + 2) // NaN
 // console.log(Boolean('0')) // true
@@ -686,12 +686,16 @@
 // if ([1] == true) console.log('true') // true
 // else console.log('false')
 // console.log('' == 0) // true
-// console.log('' == []) // true
 // console.log('' == {}) // false
-// console.log(0 == []) // true
+// console.log('' == []) // true
 // console.log(0 == {}) // false
+// console.log(0 == []) // true
+// console.log([] == null) // false
+// console.log(false == null) // false
 // console.log(0 == null) // false
-// console.log(null == []) // false
+// console.log(1 / 0) // Infinity
+// console.log(0 / 1) // 0
+// console.log(0 / 0) // NaN
 
 // let obj = {a: 1}
 // Object.freeze(obj)
