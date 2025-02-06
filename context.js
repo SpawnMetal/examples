@@ -437,3 +437,40 @@ function foo(callback) {
 // foo bar
 
 // ===================================================== //
+// Потеря контекста
+// Вследствие использования function в setTimeout, у которой свой контекст
+
+// const obj = {
+//   a: 40,
+//   say: function () {
+//     setTimeout(function () {
+//       console.log(this.a)
+//     })
+//   },
+// }
+
+// // Solution 1
+// const obj = {
+//   a: 40,
+//   say: function () {
+//     setTimeout(
+//       function () {
+//         console.log(this.a)
+//       }.bind(this)
+//     )
+//   },
+// }
+
+// // Solution 2
+// const obj = {
+//   a: 40,
+//   say: function () {
+//     setTimeout(() => {
+//       console.log(this.a)
+//     })
+//   },
+// }
+
+// obj.say()
+
+// ===================================================== //

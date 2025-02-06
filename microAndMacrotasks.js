@@ -397,3 +397,55 @@ main()
 // task3 done
 // task2 start
 // task2 done
+
+// ===================================================== //
+// function something() {
+//   console.log('Script start') // 1
+
+//   setTimeout(() => {
+//     console.log('setTimeout') // M1
+//   }, 0)
+
+//   Promise.resolve()
+//     .then(() => {
+//       console.log('promise 1') // m1
+//     })
+//     .then(data => {
+//       console.log(`promise 2`) // m2
+//     })
+
+//   console.log('Script end') // 2
+// }
+
+// something()
+
+// // Script start
+// // Script end
+// // promise 1
+// // promise 2
+// // setTimeout
+
+// ===================================================== //
+// const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+
+// const someMethod = async files => {
+//   const results = []
+
+//   for (const el of files) {
+//     await sleep(0) // ждем какой-то async метод (на практике был бы запрос к серверу)
+//     results.push(el * 2)
+//   }
+
+//   return results
+// }
+
+// const start = async () => {
+//   const results = await someMethod([1, 2, 3]) // 2 4 6
+//   console.log(results)
+// }
+
+// start()
+
+// ===================================================== //
+// const log = text => console.log(text)
+// Promise.resolve(3).then(log) // m1
