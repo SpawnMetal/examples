@@ -79,7 +79,7 @@
 // for (var i = 0; i < 5; i++)
 //   setTimeout(function () {
 //     console.log('var i =', i)
-//   })
+//   }, i * 1000)
 
 // // Способ 1 let
 // for (let i = 0; i < 5; i++)
@@ -88,6 +88,8 @@
 //   })
 
 // // Способ 2 IIFE
+// for (var i = 0; i < 5; i++) (i => setTimeout(() => console.log('var i =', i)))(i)
+
 // for (var i = 0; i < 5; i++)
 //   (function (i) {
 //     setTimeout(function () {
